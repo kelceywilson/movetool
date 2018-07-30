@@ -4,16 +4,46 @@ const Schema = mongoose.Schema
 const AlertSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'user'
   },
-  alert_type: String,
+  alert_type: {
+    type: String,
+    required: true
+  },
+  title: {
+    type: String,
+    required: true
+  },
+  photo_url: String,
+  name: String,
+  avatar: String,
+  likes: [{
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'user'
+    }
+  }],
+  flags: [{
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'user'
+    },
+    issue: {
+      type: String,
+      required: true
+    },
+    name: String,
+    date: {
+      type: Date,
+      default: Date.now
+    }
+  }],
   address: String,
   city: String,
   state: String,
   zip: String,
   county: String,
   public: Boolean,
-  title: String,
   body: String,
   price_value: Number,
   item_or_unit: String,
@@ -24,7 +54,6 @@ const AlertSchema = new Schema({
   acreage: Number,
   frequency: Number,
   expires: Date,
-  photo_url: String,
   event_date_time: Date,
   venue_name: String,
   rsvp_link: String,
