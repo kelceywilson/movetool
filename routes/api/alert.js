@@ -1,6 +1,7 @@
 const express = require('express');
 const passport = require('passport')
 const router = express.Router();
+const mongoose = require('mongoose')
 
 const Alert = require('../../models/Alert')
 
@@ -8,34 +9,9 @@ const Alert = require('../../models/Alert')
  * Callback to an express route to get all alerts
  * @return {Promise} - resolves to an array of objects representing all alerts
  */
-const getAllAlerts = () =>
-  Alert.find({}).sort({
-    createdAt: -1
-  });
-
-/**
- * Callback to an express route to add a new alert
- * @param {object} newAlertPost - represents new alert
- * @return {Promise} -resolves to an object representing the alert
- */
-const addNewAlert = newAlertPost => {
-  const newAlert = new Alert(newAlertPost);
-  return newAlert.save();
-};
-
-/**
- * Callback to an express route to get alert by its id
- * @param  {string} alertId - unique id of alert
- * @return {Promise} - resolves to an object representing the alert
- */
-const getOneAlert = alertId => Alert.findById(alertId);
-
-/**
- * Callback to an express route to delete an alert of given id
- * @param  {string} alertId - unique id of alert
- * @return {Promise} - resolves to an array of objects representing all alerts
- */
-const deleteOneAlert = alertId => Alert.findByIdAndRemove(alertId);
+const getAllAlerts = () => Alert.find({}).sort({
+  createdAt: -1
+})
 
 /**
  * Callback to an express route to search for all alerts that has search terms in title or type
@@ -43,11 +19,13 @@ const deleteOneAlert = alertId => Alert.findByIdAndRemove(alertId);
  * @return {Promise} - resolves to array of objects representing relevant alerts
  */
 const searchAlerts = terms => {
-  console.log(terms);
-  if (terms === "") {
+  console.log('search', terms);
+  if (terms === '') {
     return getAllAlerts();
   }
-  const splitTerms = terms.split(" ");
+  const splitTerms = terms.split(' ');
+  console.log(splitTerms);
+
   return Alert.where({
     $or: [{
         alert_type: {
@@ -79,7 +57,7 @@ const searchAlerts = terms => {
 };
 
 const filterAlerts = filterBy => {
-  console.log(filterBy);
+  console.log('filter', filterBy);
   return Alert.where({
     alert_type: filterBy
   });
@@ -96,25 +74,42 @@ router.get("/test", (req, res) =>
   })
 );
 
-// GET all alerts page
-// TODO change to get 10 at a time with paging
-router.get("/alert", (req, res) => {
-  getAllAlerts()
+/**
+ * @route   GET api/alert
+ * @desc    Get all alerts
+ * @access  Public
+ * TODO     change to get 10 at a time with paging
+ */
+router.get('/', (req, res) => {
+  Alert.find({})
+    .sort({
+      createdAt: -1
+    })
     .then(alerts => res.json(alerts))
-    .catch(err => console.log(err));
+    .catch(err => console.log(err))
 });
 
-// POST new alert
-router.post("/alert", (req, res) => {
-  db.addNewAlert(req.body)
-    .then(() => {
-      getAllAlerts().then(alerts => res.status(201).json(alerts));
-    })
-    .catch(err => console.log(err));
-});
+/**
+ * @route   POST api/alert
+ * @desc    Post new alert
+ * @access  Private
+ */
+router.post("/", passport.authenticate('jwt', {
+  session: false
+}), (req, res) => {
+  const newAlert = new Alert({
+    ...req.body,
+    user: req.user.id
+  })
+
+  newAlert.save()
+    .then(() => getAllAlerts())
+    .then(alerts => res.status(201).json(alerts))
+    .catch(err => console.log(err))
+})
 
 // GET search alerts
-router.get("/alert/search", (req, res) => {
+router.get("/search", (req, res) => {
   const {
     terms
   } = req.query;
@@ -126,7 +121,7 @@ router.get("/alert/search", (req, res) => {
 });
 
 // GET filter alerts
-router.get("/alert/filter", (req, res) => {
+router.get("/filter", (req, res) => {
   const {
     filterBy
   } = req.query;
@@ -137,20 +132,30 @@ router.get("/alert/filter", (req, res) => {
     .catch(err => console.log(err));
 });
 
-// GET one alert
-router.get("/alert/:aID", (req, res) => {
-  getOneAlert(req.params.aID)
+/**
+ * @route   GET api/alert/:aID
+ * @desc    GET one alert by id
+ * @access  Public
+ */
+router.get("/:aID", (req, res) => {
+  Alert.findById(req.params.aID)
     .then(alert => res.json(alert))
     .catch(err => console.log(err));
 });
 
-// DELETE one alert
-router.delete("/alert/:aID", (req, res) => {
-  db.deleteOneAlert(req.params.aID)
+/**
+ * @route   DELETE api/alert/:aID
+ * @desc    Delete alert by ID
+ * @access  Private
+ */
+router.delete("/:aID", passport.authenticate('jwt', {
+  session: false
+}), (req, res) => {
+  Alert.findByIdAndRemove(req.params.aID)
     .then(() => {
       getAllAlerts().then(alerts => res.json(alerts));
     })
     .catch(err => console.log(err));
-});
+})
 
 module.exports = router;
