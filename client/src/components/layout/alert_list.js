@@ -6,7 +6,8 @@ import Modal from "react-responsive-modal";
 
 import AlertDetail from "./alert_detail";
 import NewAlert from "./new_alert";
-// import AlertDetail from '../containers/alert_detail'
+import add from "../../img/add.png";
+
 import {
   closeModal,
   deleteAlert,
@@ -105,7 +106,9 @@ class AlertList extends Component {
             }
             className="alert-new-button"
           >
-            CREATE<img className="icon" src="./add.png" alt="add alert" /> ALERT
+            CREATE
+            <img className="icon" src={add} alt="add alert" />
+            ALERT
           </button>
         </div>
         {this.getAllButton()}
