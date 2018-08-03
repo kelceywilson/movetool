@@ -1,6 +1,182 @@
-/* .mybrand {
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+/* <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Home">Home</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> */
+
+/* <div>Icons made by <a href="https://www.flaticon.com/authors/xnimrodx" title="Portfolio">Portfolio</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> */
+
+.icon {
+  height: 20px;
+  width: 20px;
+  margin: 5px 10px;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* flex-wrap: nowrap; */
+  /* background-color: #F0F0F0; */
+}
+
+.create-new-alert-button-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  background-color: #F0F0F0;
+  padding-bottom: 5px;
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /* flex-wrap: nowrap; */
+  /* margin: 5px 0 0; */
+  background-color: #F0F0F0;
+  padding: 10px 0 5px;
+}
+
+.filter {
+  height: 15px;
+}
+
+.get-all-alerts-button-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* flex-wrap: nowrap; */
+  background-color: #F0F0F0;
+}
+
+.search {
+  background-image: url('./img/search-icon.png');
+  background-repeat: no-repeat;
+  height: 15px;
+  padding-left: 25px;
+  /* line-height: 20px;
+  vertical-align: middle; */
+  background-size: 20px 20px;
+  border-radius: 5px;
+}
+
+.alert-list {
+  background-color: #F0F0F0;
+  /* width: 320px; */
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+  align-items: center;
+  /* padding: 0 0 20px; */
+  justify-content: center;
+}
+
+.alert-detail {
+  display: flex;
+  flex-direction: column;
+  max-width: 250px;
+  /* margin: 20px; */
+}
+
+.alert-delete {
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+.alert-div {
+  background-color: white;
+  width: 200px;
+  border: none;
+  border-radius: 10px;
+  margin: 10px 20px 0;
+}
+
+.smush-left {
+  margin-left: auto;
+}
+
+.alert-title {
+  margin: 10px;
+}
+
+.alert-thumb {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px 10px 0 0;
+}
+
+.alert-type {
+  background-color: #bada55;
+  margin: -5px 0;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.alert-new-button {
+  /* margin: 15px; */
+  display: flex;
+  border: none;
+  border-radius: 5px;
+  background-color: #bada55;
+  min-width: 200px;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
+  margin: 5px 0 0;
+  /* flex-wrap: nowrap; */
+  justify-content: center;
+  font-size: .6em;
+  font-weight: bold;
+  vertical-align: top;
+  /* background-image: url("add.png"); */
+}
+
+.width-100-percent {
+  width: 100%;
+  align-self: center;
+}
+
+.error {
   color: red;
-} */
+  border-color: red;
+}
+
+.nav {
+  /* margin: 15px; */
+  display: flex;
+  /* justify-content: space-around; */
+  /* background-color: #bada55; */
+  /* padding: 5px; */
+  /* font-size: .8em; */
+}
+
+.nav a {
+  text-decoration: none;
+  padding: 5px;
+}
+
+.nav a:hover,
+.nav .active {
+  /* color: #fff; */
+  background: #b9f475;
+  /* height: 100%; */
+  padding: 5px;
+  width: auto;
+}
+
+.menu {
+  /* display: inline; */
+  display: flex;
+  justify-content: space-between;
+  /* margin: 10px; */
+}
 
 img {
   width: 100%;
