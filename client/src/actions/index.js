@@ -82,7 +82,7 @@ export function getAllAlerts() {
   };
 }
 export function getAlertById(id) {
-  const request = axios.get(`${ROOT_URL}/alerts/${id}`);
+  const request = axios.get(`${ROOT_URL}/api/alert/${id}`);
   return {
     type: GET_ONE_ALERT,
     payload: request
@@ -96,7 +96,7 @@ export function getDetails(alertId) {
 }
 export function searchAlerts(terms) {
   console.log("searchAlerts", terms);
-  const request = axios.get(`${ROOT_URL}/alerts/search?terms=${terms}`);
+  const request = axios.get(`${ROOT_URL}/api/alert/search?terms=${terms}`);
   return {
     type: FILTER_ALERTS,
     payload: request

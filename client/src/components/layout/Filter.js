@@ -12,10 +12,9 @@ class Filter extends Component {
       alert_type: "",
       errors: {}
     };
-    this.onInputChange = this.onInputChange.bind(this);
   }
 
-  onInputChange(event) {
+  onChange(event) {
     this.props.filterAlerts(event.target.value);
   }
 
@@ -23,13 +22,15 @@ class Filter extends Component {
     const { errors } = this.state;
 
     return (
-      <div className="filter" onChange={this.onInputChange}>
+      <div>
         <SelectListGroup
           placeholder="Alert type"
           name="alert_type"
           value={this.state.alert_type}
+          onChange={this.onChange}
           options={alert_types}
           error={errors.alert_type}
+          className="filter"
         />
       </div>
     );

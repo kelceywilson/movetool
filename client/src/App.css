@@ -43,13 +43,14 @@ body {
   /* flex-wrap: nowrap; */
   /* margin: 5px 0 0; */
   background-color: #F0F0F0;
-  padding: 10px 0 5px;
+  padding: 10px 0;
 }
 
 .filter {
   /* height: 55px; */
   /* line-height: 55px; */
-  color: red;
+  /* color: red; */
+  /* border: none; */
 }
 
 .get-all-alerts-button-div {
@@ -63,11 +64,11 @@ body {
 .search {
   background-image: url('./img/search-icon.png');
   background-repeat: no-repeat;
-  height: 33px;
-  padding-left: 30px;
+  height: 25px;
+  padding-left: 25px;
   /* line-height: 20px;
   vertical-align: middle; */
-  /* background-size: 20px 20px; */
+  background-size: 20px 20px;
   border-radius: 5px;
 }
 

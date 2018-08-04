@@ -29,7 +29,7 @@ class Search extends Component {
         <form onSubmit={this.onFormSubmit}>
           <input
             className="search"
-            placeholder="search alerts"
+            placeholder="Search Alerts"
             value={this.state.terms}
             onChange={this.onInputChange}
           />
