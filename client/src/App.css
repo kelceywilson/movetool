@@ -33,6 +33,7 @@ body {
   flex-wrap: nowrap;
   background-color: #F0F0F0;
   padding-bottom: 5px;
+  /* margin: 5px; */
 }
 
 .filters {
@@ -46,7 +47,9 @@ body {
 }
 
 .filter {
-  height: 15px;
+  /* height: 55px; */
+  /* line-height: 55px; */
+  color: red;
 }
 
 .get-all-alerts-button-div {
@@ -60,11 +63,11 @@ body {
 .search {
   background-image: url('./img/search-icon.png');
   background-repeat: no-repeat;
-  height: 15px;
-  padding-left: 25px;
+  height: 33px;
+  padding-left: 30px;
   /* line-height: 20px;
   vertical-align: middle; */
-  background-size: 20px 20px;
+  /* background-size: 20px 20px; */
   border-radius: 5px;
 }
 
@@ -115,8 +118,8 @@ body {
 
 .alert-type {
   background-color: #bada55;
-  margin: -5px 0;
-  padding: 5px;
+  /* margin: -5px 0; */
+  /* padding: 5px; */
   display: flex;
   justify-content: center;
 }
@@ -131,7 +134,7 @@ body {
   height: 30px;
   line-height: 30px;
   vertical-align: middle;
-  margin: 5px 0 0;
+  /* margin: 5px 0 0; */
   /* flex-wrap: nowrap; */
   justify-content: center;
   font-size: .6em;
@@ -184,7 +187,7 @@ img {
   width: 100%;
 }
 
-.landing {
+.alert-container {
   position: relative;
   /* background: url('./img/showcase.jpg') no-repeat; */
   background-size: cover;
@@ -194,7 +197,7 @@ img {
   margin-bottom: -50px;
 }
 
-.landing-inner {
+.alert-container-inner {
   padding-top: 80px;
 }
 

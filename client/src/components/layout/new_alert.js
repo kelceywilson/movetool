@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import { Field, reduxForm, reset } from "redux-form";
+// import { reduxForm, reset } from "redux-form";
 import { connect } from "react-redux";
-import FileUploader from "./file_uploader";
-import AlertTypeChooser from "./alert_type_chooser";
+import PropTypes from "prop-types";
+
+// import FileUploader from "./file_uploader";
+// import AlertTypeChooser from "./alert_type_chooser";
 import { addNewAlert, closeModal } from "../../actions/index";
 import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
-
+import alert_types from "./alert_types";
 // field.input is an object that contains a bunch of
 // event handlers and props
 // the ... is saying all of the properties of the object
@@ -26,31 +28,30 @@ class NewAlert extends Component {
     };
 
     this.onChange = this.onChange.bind(this);
-  }
-  renderField(field) {
-    const {
-      meta: { touched, error }
-    } = field;
-    const className = touched && error ? "error" : "";
-    return (
-      <div>
-        <label>{field.label}</label>
-        <input className={className} type="text" {...field.input} />
-        <div className="error">{touched ? error : ""}</div>
-      </div>
-    );
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onSubmit(values) {
-    console.log("onSubmit NewAlert form", this.props);
-    const photo_url = this.props.photo_url;
-    const alert_type = this.props.alert_type;
-    this.props.addNewAlert({ ...values, photo_url, alert_type });
-    this.props.closeModal();
-  }
+  // onSubmit(values) {
+  //   console.log("onSubmit NewAlert form", this.props);
+  //   const photo_url = this.props.photo_url;
+  //   const alert_type = this.props.alert_type;
+  //   this.props.addNewAlert({ ...values, photo_url, alert_type });
+  //   this.props.closeModal();
+  // }
 
   onCancel() {
     this.props.closeModal();
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const alertData = {
+      alert_type: this.state.alert_type,
+      title: this.state.title
+    };
+
+    this.props.addNewAlert(alertData);
   }
 
   onChange(e) {
@@ -61,35 +62,18 @@ class NewAlert extends Component {
   // it runs the submitted values through the error
   // handler, and if ok, then to the onSubmit function
   render() {
-    const { handleSubmit } = this.props;
     const { errors } = this.state;
-    const options = [
-      { label: "* Select Alert Type", value: 0 },
-      { label: "EVENT", value: "EVENT" },
-      { label: "FREE", value: "FREE" },
-      { label: "JOB", value: "JOB" },
-      { label: "OTHER", value: "OTHER" },
-      { label: "SALE", value: "SALE" },
-      { label: "SHARE", value: "SHARE" },
-      { label: "TRADE", value: "TRADE" },
-      { label: "WANTED", value: "WANTED" }
-    ];
 
     return (
       <div>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+        <form onSubmit={this.onSubmit}>
           <SelectListGroup
             placeholder="Alert type"
             name="alert_type"
             value={this.state.alert_type}
             onChange={this.onChange}
-            options={options}
+            options={alert_types}
             error={errors.alert_type}
-          />
-          <Field
-            label="Alert Type"
-            name="alert_type"
-            component={AlertTypeChooser}
           />
           <InputGroup
             placeholder="Title"
@@ -98,7 +82,6 @@ class NewAlert extends Component {
             onChange={this.onChange}
             error={errors.title}
           />
-          <Field label="Photo" name="photo_url" component={FileUploader} />
           <button type="submit">SUBMIT AN ALERT</button>
           <button onClick={this.onCancel.bind(this)}>Cancel</button>
         </form>
@@ -107,18 +90,24 @@ class NewAlert extends Component {
   }
 }
 
-function validate(values) {
-  const errors = {};
+/* <Field label="Photo" name="photo_url" component={FileUploader} /> */
 
-  if (!values.title) {
-    errors.title = "Enter a title";
-  }
-  // if errors is empty then form is ok to SUBMIT
-  // if errors has any properties than it isn't
-  return errors;
-}
+// function validate(values) {
+//   const errors = {};
 
-const afterSubmit = (result, dispatch) => dispatch(reset("NewAlertForm"));
+//   if (!values.title) {
+//     errors.title = "Enter a title";
+//   }
+//   // if errors is empty then form is ok to SUBMIT
+//   // if errors has any properties than it isn't
+//   return errors;
+// }
+
+// const afterSubmit = (result, dispatch) => dispatch(reset("NewAlertForm"));
+
+NewAlert.propTypes = {
+  errors: PropTypes.object.isRequired
+};
 
 function mapStateToProps(state) {
   return {
@@ -129,13 +118,18 @@ function mapStateToProps(state) {
 
 // reduxForm is a lot like connect
 // helps form connect to reduxForm reducer
-export default reduxForm({
-  validate: validate,
-  form: "NewAlertForm",
-  onSubmitSuccess: afterSubmit
-})(
-  connect(
-    mapStateToProps,
-    { addNewAlert, closeModal }
-  )(NewAlert)
-);
+// export default reduxForm({
+//   validate: validate,
+//   form: "NewAlertForm",
+//   onSubmitSuccess: afterSubmit
+// })(
+//   connect(
+//     mapStateToProps,
+//     { addNewAlert, closeModal }
+//   )(NewAlert)
+// );
+
+export default connect(
+  mapStateToProps,
+  { addNewAlert, closeModal }
+)(NewAlert);

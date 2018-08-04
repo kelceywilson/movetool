@@ -5,6 +5,7 @@ const alert = require("./routes/api/alert");
 const profile = require("./routes/api/profile");
 const user = require("./routes/api/user");
 const passport = require("passport");
+const cloudinary = require("cloudinary");
 
 const app = express();
 
@@ -14,6 +15,12 @@ app.use(
   })
 );
 app.use(bodyparser.json());
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
+});
 
 // DB Config
 const db = require("./config/keys").mongoURI;
@@ -33,7 +40,19 @@ mongoose
 app.use(passport.initialize());
 require("./config/passport")(passport);
 
-app.get("/", (req, res) => res.send("Hello"));
+// this can all be replaced by uncommenting cors middleware and app.use
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, authorization"
+  );
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "PUT,POST,DELETE");
+    return res.status(200).json({});
+  }
+  next();
+});
 
 // Routes
 app.use("/api/alert", alert);

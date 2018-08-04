@@ -8,6 +8,7 @@ export const DELETE_PHOTO_URL = "DELETE_PHOTO_URL";
 export const FETCH_MESSAGE = "FETCH_MESSAGE";
 export const FILTER_ALERTS = "FILTER_ALERTS";
 export const GET_ALL_ALERTS = "GET_ALL_ALERTS";
+export const GET_ERRORS = "GET_ERRORS";
 export const GET_ONE_ALERT = "GET_ONE_ALERT";
 export const GET_DETAILS = "GET_DETAILS";
 export const OPEN_MODAL = "OPEN_MODAL";
@@ -15,8 +16,8 @@ export const OPEN_MODAL = "OPEN_MODAL";
 export const SET_ALERT_TYPE = "SET_ALERT_TYPE";
 export const UPLOAD_FILE = "UPLOAD_FILE";
 
-// const ROOT_URL = 'http://localhost:5000'
-const ROOT_URL = "https://mighty-castle-33351.herokuapp.com";
+const ROOT_URL = "http://localhost:5000";
+// const ROOT_URL = "https://mighty-castle-33351.herokuapp.com";
 
 // ALERT ACTIONS //
 export function addNewAlert(values) {
@@ -27,6 +28,24 @@ export function addNewAlert(values) {
     payload: request
   };
 }
+// export const addNewAlert = values => dispatch => {
+//   axios
+//     .post(`${ROOT_URL}/alerts`, values)
+//     .then(response =>
+//       dispatch({
+//         type: ADD_NEW_ALERT,
+//         payload: response
+//       })
+//     )
+//     .catch(err => {
+//       console.log(err);
+
+//       dispatch({
+//         type: GET_ERRORS,
+//         payload: err.response
+//       });
+//     });
+// };
 export function deleteAlert(alertId) {
   console.log("deleteAlert", alertId);
   const request = axios.delete(`${ROOT_URL}/alerts/${alertId}`);
@@ -56,7 +75,7 @@ export function filterAlerts(filter) {
   };
 }
 export function getAllAlerts() {
-  const request = axios.get(`${ROOT_URL}/alerts`);
+  const request = axios.get(`${ROOT_URL}/api/alert`);
   return {
     type: GET_ALL_ALERTS,
     payload: request
