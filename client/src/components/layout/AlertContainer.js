@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 import Filter from "./Filter";
 import Search from "./Search";
-import AlertList from "./alert_list";
+import AlertList from "./AlertList";
 
 class AlertContainer extends Component {
   // componentDidMount() {

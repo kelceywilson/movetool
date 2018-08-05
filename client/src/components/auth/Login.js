@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
-import TextFieldGroup from "../common/TextFieldGroup";
+import TextField from "../common/TextField";
 
 class Login extends Component {
   constructor() {
@@ -61,7 +61,7 @@ class Login extends Component {
                 Sign in to your Movetool account
               </p>
               <form onSubmit={this.onSubmit}>
-                <TextFieldGroup
+                <TextField
                   placeholder="Email Address"
                   name="email"
                   type="email"
@@ -70,7 +70,7 @@ class Login extends Component {
                   error={errors.email}
                 />
 
-                <TextFieldGroup
+                <TextField
                   placeholder="Password"
                   name="password"
                   type="password"

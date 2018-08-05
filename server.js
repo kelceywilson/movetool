@@ -1,13 +1,27 @@
+require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyparser = require("body-parser");
+// const cors = require("cors");
+const passport = require("passport");
+const cloudinary = require("cloudinary");
 const alert = require("./routes/api/alert");
 const profile = require("./routes/api/profile");
 const user = require("./routes/api/user");
-const passport = require("passport");
-const cloudinary = require("cloudinary");
 
 const app = express();
+
+// app.use(cors());
+// app.use(
+//   cors({
+//     allowedHeaders: ["sessionId", "Content-Type"],
+//     exposedHeaders: ["sessionId"],
+//     origin: "*",
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     preflightContinue: false
+//   })
+// );
 
 app.use(
   bodyparser.urlencoded({
@@ -45,10 +59,10 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, authorization"
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
   );
   if (req.method === "OPTIONS") {
-    res.header("Access-Control-Allow-Methods", "PUT,POST,DELETE");
+    res.header("Access-Control-Allow-Methods", "PUT,POST,DELETE,OPTIONS");
     return res.status(200).json({});
   }
   next();

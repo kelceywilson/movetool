@@ -22,7 +22,7 @@ const ROOT_URL = "http://localhost:5000";
 // ALERT ACTIONS //
 export function addNewAlert(values) {
   console.log("addNewAlert", values);
-  const request = axios.post(`${ROOT_URL}/alerts`, values);
+  const request = axios.post(`${ROOT_URL}/api/alert`, values);
   return {
     type: ADD_NEW_ALERT,
     payload: request
@@ -48,7 +48,7 @@ export function addNewAlert(values) {
 // };
 export function deleteAlert(alertId) {
   console.log("deleteAlert", alertId);
-  const request = axios.delete(`${ROOT_URL}/alerts/${alertId}`);
+  const request = axios.delete(`${ROOT_URL}/api/alert/${alertId}`);
   return {
     type: DELETE_ALERT,
     payload: request
@@ -68,7 +68,7 @@ export function deletePhotoUrl() {
 // }
 export function filterAlerts(filter) {
   console.log("filterAlerts", filter);
-  const request = axios.get(`${ROOT_URL}/alerts/filter?filterBy=${filter}`);
+  const request = axios.get(`${ROOT_URL}/api/alert/filter?filterBy=${filter}`);
   return {
     type: FILTER_ALERTS,
     payload: request
@@ -126,6 +126,7 @@ export const uploadFile = event => {
   return dispatch => {
     return axios({
       url: CLOUDINARY_URL,
+      skipAuthorization: true,
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"

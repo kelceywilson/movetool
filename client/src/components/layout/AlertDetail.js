@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Field, reduxForm, reset } from "redux-form";
 import { connect } from "react-redux";
-import FileUploader from "./file_uploader";
+import FileUploader from "./FileUploader";
 import { closeModal, deleteAlert } from "../../actions/index";
 
 class AlertDetail extends Component {

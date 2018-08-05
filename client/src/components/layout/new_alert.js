@@ -3,12 +3,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-// import FileUploader from "./file_uploader";
+import FileUploader from "./FileUploader";
 // import AlertTypeChooser from "./alert_type_chooser";
 import { addNewAlert, closeModal } from "../../actions/index";
 import InputGroup from "../common/InputGroup";
-import SelectListGroup from "../common/SelectListGroup";
-import alert_types from "./alert_types";
+import SelectList from "../common/SelectList";
+import alert_types from "../common/alert_types";
 // field.input is an object that contains a bunch of
 // event handlers and props
 // the ... is saying all of the properties of the object
@@ -67,7 +67,7 @@ class NewAlert extends Component {
     return (
       <div>
         <form onSubmit={this.onSubmit}>
-          <SelectListGroup
+          <SelectList
             placeholder="Alert type"
             name="alert_type"
             value={this.state.alert_type}
@@ -82,6 +82,7 @@ class NewAlert extends Component {
             onChange={this.onChange}
             error={errors.title}
           />
+          <FileUploader />
           <button type="submit">SUBMIT AN ALERT</button>
           <button onClick={this.onCancel.bind(this)}>Cancel</button>
         </form>
@@ -90,6 +91,13 @@ class NewAlert extends Component {
   }
 }
 
+/* <InputGroup
+placeholder="Photo"
+name="photo_url"
+value={this.state.photo_url}
+onChange={FileUploader}
+error={errors.photo_url}
+/> */
 /* <Field label="Photo" name="photo_url" component={FileUploader} /> */
 
 // function validate(values) {
@@ -112,7 +120,8 @@ NewAlert.propTypes = {
 function mapStateToProps(state) {
   return {
     photo_url: state.file.photo_url,
-    alert_type: state.alert_type.alert_type
+    alert_type: state.alert_type.alert_type,
+    errors: state.errors
   };
 }
 

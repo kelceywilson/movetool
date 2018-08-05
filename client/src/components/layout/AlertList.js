@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import _ from "lodash";
 import Modal from "react-responsive-modal";
 
-import AlertDetail from "./alert_detail";
+import AlertDetail from "./AlertDetail";
 import NewAlert from "./new_alert";
 import add from "../../img/add.png";
 
@@ -21,6 +21,8 @@ class AlertList extends Component {
     this.props.getAllAlerts();
   }
   createAlertList() {
+    console.log(this.props);
+
     return _.map(this.props.alerts.list, alert => {
       return (
         <div className="alert-div" key={alert._id}>

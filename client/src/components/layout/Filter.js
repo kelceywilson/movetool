@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { filterAlerts } from "../../actions/index";
-import alert_types from "./alert_types";
-import SelectListGroup from "../common/SelectListGroup";
+import alert_types from "../common/alert_types";
+import SelectList from "../common/SelectList";
 
 class Filter extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class Filter extends Component {
 
     return (
       <div>
-        <SelectListGroup
+        <SelectList
           placeholder="Alert type"
           name="alert_type"
           value={this.state.alert_type}

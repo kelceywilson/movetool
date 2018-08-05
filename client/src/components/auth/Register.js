@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
-import TextFieldGroup from "../common/TextFieldGroup";
+import TextField from "../common/TextField";
 
 class Register extends Component {
   constructor() {
@@ -62,21 +62,21 @@ class Register extends Component {
               <h1 className="display-4 text-center">Sign Up</h1>
               <p className="lead text-center">Create your Movetool account</p>
               <form noValidate onSubmit={this.onSubmit}>
-                <TextFieldGroup
+                <TextField
                   placeholder="First Name"
                   name="first_name"
                   value={this.state.first_name}
                   onChange={this.onChange}
                   error={errors.first_name}
                 />
-                <TextFieldGroup
+                <TextField
                   placeholder="Last Name"
                   name="last_name"
                   value={this.state.last_name}
                   onChange={this.onChange}
                   error={errors.last_name}
                 />
-                <TextFieldGroup
+                <TextField
                   placeholder="Email"
                   name="email"
                   type="email"
@@ -85,7 +85,7 @@ class Register extends Component {
                   error={errors.email}
                   info="This site uses Gravatar so if you want a profile image, use a Gravatar email"
                 />
-                <TextFieldGroup
+                <TextField
                   placeholder="Password"
                   name="password"
                   type="password"
@@ -93,7 +93,7 @@ class Register extends Component {
                   onChange={this.onChange}
                   error={errors.password}
                 />
-                <TextFieldGroup
+                <TextField
                   placeholder="Confirm Password"
                   name="password2"
                   type="password"
