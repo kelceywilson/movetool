@@ -33,8 +33,8 @@ class Login extends Component {
     }
   }
 
-  onSubmit(e) {
-    e.preventDefault();
+  onSubmit(event) {
+    event.preventDefault();
 
     const userData = {
       email: this.state.email,
@@ -44,8 +44,8 @@ class Login extends Component {
     this.props.loginUser(userData);
   }
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+  onChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   render() {

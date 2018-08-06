@@ -126,20 +126,18 @@ export const uploadFile = event => {
   return dispatch => {
     return axios({
       url: CLOUDINARY_URL,
-      skipAuthorization: true,
       method: "POST",
+      skipAuthorization: true,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       data: formData
     })
       .then(response => {
-        // console.log('cloudinary response', response);
         dispatch({
           type: UPLOAD_FILE,
           payload: response.data.secure_url
         });
-        // return response.data.secure_url
       })
       .catch(function(err) {
         console.log(err);
