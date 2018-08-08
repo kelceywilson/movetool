@@ -24,7 +24,14 @@ const app = express();
 //     preflightContinue: false
 //   })
 // );
+// const corsOptions = {
+//   origin: "http://localhost:3000",
+//   optionsSuccessStatus: 200
+// };
 
+// app.use(cors(corsOptions));
+
+// app.options("*", cors());
 // this can all be replaced by uncommenting cors middleware and app.use
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
