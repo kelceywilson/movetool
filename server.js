@@ -25,6 +25,20 @@ const app = express();
 //   })
 // );
 
+// this can all be replaced by uncommenting cors middleware and app.use
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "PUT,POST,DELETE,OPTIONS");
+    return res.status(200).json({});
+  }
+  next();
+});
+
 app.use(
   bodyparser.urlencoded({
     extended: false
@@ -68,20 +82,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
-
-// this can all be replaced by uncommenting cors middleware and app.use
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-//   );
-//   if (req.method === "OPTIONS") {
-//     res.header("Access-Control-Allow-Methods", "PUT,POST,DELETE,OPTIONS");
-//     return res.status(200).json({});
-//   }
-//   next();
-// });
 
 const port = process.env.PORT || 5000;
 

@@ -1,17 +1,18 @@
-const express = require('express');
-const passport = require('passport')
+const express = require("express");
+const passport = require("passport");
 const router = express.Router();
-const mongoose = require('mongoose')
 
-const Alert = require('../../models/Alert')
+const Alert = require("../../models/Alert");
+const User = require("../../models/User");
 
 /**
  * Callback to an express route to get all alerts
  * @return {Promise} - resolves to an array of objects representing all alerts
  */
-const getAllAlerts = () => Alert.find({}).sort({
-  createdAt: -1
-})
+const getAllAlerts = () =>
+  Alert.find({}).sort({
+    createdAt: -1
+  });
 
 /**
  * Callback to an express route to search for all alerts that has search terms in title or type
@@ -19,15 +20,16 @@ const getAllAlerts = () => Alert.find({}).sort({
  * @return {Promise} - resolves to array of objects representing relevant alerts
  */
 const searchAlerts = terms => {
-  console.log('search', terms);
-  if (terms === '') {
+  console.log("search", terms);
+  if (terms === "") {
     return getAllAlerts();
   }
-  const splitTerms = terms.split(' ');
+  const splitTerms = terms.split(" ");
   console.log(splitTerms);
 
   return Alert.where({
-    $or: [{
+    $or: [
+      {
         alert_type: {
           $in: splitTerms
         }
@@ -57,7 +59,7 @@ const searchAlerts = terms => {
 };
 
 const filterAlerts = filterBy => {
-  console.log('filter', filterBy);
+  console.log("filter", filterBy);
   return Alert.where({
     alert_type: filterBy
   });
@@ -80,13 +82,13 @@ router.get("/test", (req, res) =>
  * @access  Public
  * TODO     change to get 10 at a time with paging
  */
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   Alert.find({})
     .sort({
       createdAt: -1
     })
     .then(alerts => res.json(alerts))
-    .catch(err => console.log(err))
+    .catch(err => console.log(err));
 });
 
 /**
@@ -94,25 +96,28 @@ router.get('/', (req, res) => {
  * @desc    Post new alert
  * @access  Private
  */
-router.post("/", passport.authenticate('jwt', {
-  session: false
-}), (req, res) => {
-  const newAlert = new Alert({
-    ...req.body,
-    user: req.user.id
-  })
+router.post(
+  "/",
+  passport.authenticate("jwt", {
+    session: false
+  }),
+  (req, res) => {
+    const newAlert = new Alert({
+      ...req.body,
+      user: req.user.id
+    });
 
-  newAlert.save()
-    .then(() => getAllAlerts())
-    .then(alerts => res.status(201).json(alerts))
-    .catch(err => console.log(err))
-})
+    newAlert
+      .save()
+      .then(() => getAllAlerts())
+      .then(alerts => res.status(201).json(alerts))
+      .catch(err => console.log(err));
+  }
+);
 
 // GET search alerts
 router.get("/search", (req, res) => {
-  const {
-    terms
-  } = req.query;
+  const { terms } = req.query;
   searchAlerts(terms)
     .then(alerts => {
       res.json(alerts);
@@ -122,9 +127,7 @@ router.get("/search", (req, res) => {
 
 // GET filter alerts
 router.get("/filter", (req, res) => {
-  const {
-    filterBy
-  } = req.query;
+  const { filterBy } = req.query;
   filterAlerts(filterBy)
     .then(alerts => {
       res.json(alerts);
@@ -148,14 +151,18 @@ router.get("/:aID", (req, res) => {
  * @desc    Delete alert by ID
  * @access  Private
  */
-router.delete("/:aID", passport.authenticate('jwt', {
-  session: false
-}), (req, res) => {
-  Alert.findByIdAndRemove(req.params.aID)
-    .then(() => {
-      getAllAlerts().then(alerts => res.json(alerts));
-    })
-    .catch(err => console.log(err));
-})
+router.delete(
+  "/:aID",
+  passport.authenticate("jwt", {
+    session: false
+  }),
+  (req, res) => {
+    Alert.findByIdAndRemove(req.params.aID)
+      .then(() => {
+        getAllAlerts().then(alerts => res.json(alerts));
+      })
+      .catch(err => console.log(err));
+  }
+);
 
 module.exports = router;

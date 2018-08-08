@@ -1,4 +1,6 @@
 import axios from "axios";
+import { ROOT_URL } from "./types";
+// const ROOT_URL = "https://mighty-castle-33351.herokuapp.com";
 
 export const ADD_NEW_ALERT = "ADD_NEW_ALERT";
 export const CLOSE_MODAL = "CLOSE_MODAL";
@@ -15,9 +17,6 @@ export const OPEN_MODAL = "OPEN_MODAL";
 // export const SELECT_ALERT = 'SELECT_ALERT'
 export const SET_ALERT_TYPE = "SET_ALERT_TYPE";
 export const UPLOAD_FILE = "UPLOAD_FILE";
-
-const ROOT_URL = "http://localhost:5000";
-// const ROOT_URL = "https://mighty-castle-33351.herokuapp.com";
 
 // ALERT ACTIONS //
 export function addNewAlert(values) {
@@ -127,7 +126,6 @@ export const uploadFile = event => {
     return axios({
       url: CLOUDINARY_URL,
       method: "POST",
-      skipAuthorization: true,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
