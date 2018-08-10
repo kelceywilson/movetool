@@ -22,7 +22,6 @@ export const UPLOAD_FILE = "UPLOAD_FILE";
 export function addNewAlert(values) {
   console.log("addNewAlert", values);
   axios.defaults.headers.common["Authorization"] = localStorage.jwtToken;
-
   const request = axios.post(`${ROOT_URL}/api/alert`, values);
   return {
     type: ADD_NEW_ALERT,
@@ -117,7 +116,6 @@ export function setAlertType(alertType) {
     payload: alertType
   };
 }
-delete axios.defaults.headers.common["Authorization"];
 
 export const uploadFile = event => {
   const file = event.target.files[0];

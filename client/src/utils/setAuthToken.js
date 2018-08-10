@@ -1,10 +1,6 @@
 import axios from "axios";
 
-const setAuthToken = (token, modal) => {
-  console.log("modal?", modal);
-  // if (modal === "true") {
-  //   delete axios.defaults.headers.common["Authorization"];
-  // } else
+const setAuthToken = token => {
   if (token) {
     // Apply to every request
     axios.defaults.headers.common["Authorization"] = token;
