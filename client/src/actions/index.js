@@ -21,6 +21,8 @@ export const UPLOAD_FILE = "UPLOAD_FILE";
 // ALERT ACTIONS //
 export function addNewAlert(values) {
   console.log("addNewAlert", values);
+  axios.defaults.headers.common["Authorization"] = localStorage.jwtToken;
+
   const request = axios.post(`${ROOT_URL}/api/alert`, values);
   return {
     type: ADD_NEW_ALERT,
@@ -115,6 +117,8 @@ export function setAlertType(alertType) {
     payload: alertType
   };
 }
+delete axios.defaults.headers.common["Authorization"];
+
 export const uploadFile = event => {
   const file = event.target.files[0];
   const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/alertsapi/upload";
@@ -123,6 +127,8 @@ export const uploadFile = event => {
   formData.append("file", file);
   formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
   return dispatch => {
+    delete axios.defaults.headers.common["Authorization"];
+
     return axios({
       url: CLOUDINARY_URL,
       method: "POST",
@@ -145,12 +151,14 @@ export const uploadFile = event => {
 
 // MODAL ACTIONS //
 export function openModal(payload) {
+  // localStorage.setItem("modal", true);
   return {
     type: OPEN_MODAL,
     payload: payload
   };
 }
 export function closeModal() {
+  // localStorage.setItem("modal", false);
   return {
     type: CLOSE_MODAL
   };

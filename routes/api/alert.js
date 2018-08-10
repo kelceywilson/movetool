@@ -106,6 +106,7 @@ router.post(
       ...req.body,
       user: req.user.id
     });
+    console.log(newAlert);
 
     newAlert
       .save()

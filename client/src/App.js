@@ -22,9 +22,12 @@ import EditProfile from "./components/edit-profile/EditProfile";
 import "./App.css";
 
 // Check for token
+// if (localStorage.jwtToken && !localStorage.bypass) {
 if (localStorage.jwtToken) {
   // Set auth token header auth
-  setAuthToken(localStorage.jwtToken);
+  console.log(localStorage.modal);
+
+  setAuthToken(localStorage.jwtToken, localStorage.modal);
   // Decode token and get user info and exp
   const decoded = jwt_decode(localStorage.jwtToken);
   // Set user and isAuthenticated
