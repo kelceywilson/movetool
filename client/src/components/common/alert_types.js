@@ -1,5 +1,5 @@
 module.exports = [
-  { label: "Alert Type", value: 0 },
+  { label: "Filter by Alert Type", value: 0 },
   { label: "EVENT", value: "EVENT" },
   { label: "FREE", value: "FREE" },
   { label: "JOB", value: "JOB" },

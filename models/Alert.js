@@ -1,10 +1,10 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const AlertSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'user'
+    ref: "user"
   },
   alert_type: {
     type: String,
@@ -12,32 +12,38 @@ const AlertSchema = new Schema({
   },
   title: {
     type: String,
+    text: true,
+    index: true,
     required: true
   },
   photo_url: String,
   name: String,
   avatar: String,
-  likes: [{
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: 'user'
+  likes: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "user"
+      }
     }
-  }],
-  flags: [{
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: 'user'
-    },
-    issue: {
-      type: String,
-      required: true
-    },
-    name: String,
-    date: {
-      type: Date,
-      default: Date.now
+  ],
+  flags: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "user"
+      },
+      issue: {
+        type: String,
+        required: true
+      },
+      name: String,
+      date: {
+        type: Date,
+        default: Date.now
+      }
     }
-  }],
+  ],
   address: String,
   city: String,
   state: String,
@@ -74,6 +80,6 @@ const AlertSchema = new Schema({
     type: Date,
     default: Date.now
   }
-})
+});
 
-module.exports = Alert = mongoose.model('alert', AlertSchema)
+module.exports = Alert = mongoose.model("alert", AlertSchema);

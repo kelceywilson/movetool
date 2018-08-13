@@ -26,36 +26,37 @@ const searchAlerts = terms => {
   }
   const splitTerms = terms.split(" ");
   console.log(splitTerms);
+  // title: { $regex: terms, $options: "ix" }
 
-  return Alert.where({
-    $or: [
-      {
-        alert_type: {
-          $in: splitTerms
-        }
-      },
-      {
-        city: {
-          $in: splitTerms
-        }
-      },
-      {
-        county: {
-          $in: splitTerms
-        }
-      },
-      {
-        title: {
-          $in: splitTerms
-        }
-      },
-      {
-        zip: {
-          $in: splitTerms
-        }
-      }
-    ]
-  });
+  return Alert.find({ $text: { $search: terms } });
+
+  // return Alert.where({
+  //   $or: [
+  //     {
+  //       alert_type: {
+  //         $in: splitTerms
+  //       }
+  //     },
+  //     {
+  //       city: {
+  //         $in: splitTerms
+  //       }
+  //     },
+  //     {
+  //       county: {
+  //         $in: splitTerms
+  //       }
+  //     },
+  //     {
+  //       title: { $regex: splitTerms, $options: "ix" }
+  //     },
+  //     {
+  //       zip: {
+  //         $in: splitTerms
+  //       }
+  //     }
+  //   ]
+  // }).collation({ locale: "en", strength: 2 });
 };
 
 const filterAlerts = filterBy => {

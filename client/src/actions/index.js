@@ -126,7 +126,6 @@ export const uploadFile = event => {
   formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
   return dispatch => {
     delete axios.defaults.headers.common["Authorization"];
-
     return axios({
       url: CLOUDINARY_URL,
       method: "POST",

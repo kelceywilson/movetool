@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+// import { bindActionCreators } from "redux";
 import { filterAlerts } from "../../actions/index";
 import alert_types from "../common/alert_types";
 import SelectList from "../common/SelectList";
@@ -12,9 +12,13 @@ class Filter extends Component {
       alert_type: "",
       errors: {}
     };
+
+    this.onChange = this.onChange.bind(this);
   }
 
   onChange(event) {
+    console.log(event.target);
+
     this.props.filterAlerts(event.target.value);
   }
 
@@ -37,11 +41,11 @@ class Filter extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ filterAlerts }, dispatch);
-}
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators({ filterAlerts }, dispatch);
+// }
 
 export default connect(
   null,
-  mapDispatchToProps
+  { filterAlerts }
 )(Filter);
