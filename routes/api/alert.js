@@ -117,6 +117,24 @@ router.post(
   }
 );
 
+/**
+ * @route   PUT api/alert/:aid
+ * @desc    Update alert
+ * @access  Private
+ */
+router.put(
+  "/:aID",
+  passport.authenticate("jwt", {
+    session: false
+  }),
+  (req, res) => {
+    console.log(req.body, req.params.aID);
+    Alert.findByIdAndUpdate(req.params.aID, { $set: req.body }, { new: true })
+      .then(alert => res.json(alert))
+      .catch(err => console.log(err));
+  }
+);
+
 // GET search alerts
 router.get("/search", (req, res) => {
   const { terms } = req.query;
