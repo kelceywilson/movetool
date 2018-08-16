@@ -2,6 +2,7 @@ import _ from "lodash";
 import {
   ADD_NEW_ALERT,
   DELETE_ALERT,
+  EDIT_ALERT,
   GET_ALL_ALERTS,
   GET_ONE_ALERT,
   FILTER_ALERTS
@@ -15,6 +16,8 @@ export default function(state = {}, action) {
     case ADD_NEW_ALERT:
       return { list: _.mapKeys(action.payload.data, "_id") };
     case DELETE_ALERT:
+      return { list: _.mapKeys(action.payload.data, "_id") };
+    case EDIT_ALERT:
       return { list: _.mapKeys(action.payload.data, "_id") };
     case FILTER_ALERTS:
       return { list: _.mapKeys(action.payload.data, "_id") };

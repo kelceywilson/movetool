@@ -6,7 +6,7 @@ export const ADD_NEW_ALERT = "ADD_NEW_ALERT";
 export const CLOSE_MODAL = "CLOSE_MODAL";
 export const DELETE_ALERT = "DELETE_ALERT";
 export const DELETE_PHOTO_URL = "DELETE_PHOTO_URL";
-// export const EDIT_ALERT = 'EDIT_ALERT'
+export const EDIT_ALERT = "EDIT_ALERT";
 export const FETCH_MESSAGE = "FETCH_MESSAGE";
 export const FILTER_ALERTS = "FILTER_ALERTS";
 export const GET_ALL_ALERTS = "GET_ALL_ALERTS";
@@ -60,12 +60,14 @@ export function deletePhotoUrl() {
     type: DELETE_PHOTO_URL
   };
 }
-// export function editAlert(alertId){
-//   console.log('editAlert', alertId);
-//   return {
-//     type: EDIT_ALERT,
-//   }
-// }
+export function editAlert(aID, values) {
+  console.log("editAlert", aID);
+  const request = axios.put(`${ROOT_URL}/api/alert/${aID}`, values);
+  return {
+    type: EDIT_ALERT,
+    payload: request
+  };
+}
 export function filterAlerts(filter) {
   console.log("filterAlerts", filter);
   const request = axios.get(`${ROOT_URL}/api/alert/filter?filterBy=${filter}`);

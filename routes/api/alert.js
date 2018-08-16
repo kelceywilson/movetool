@@ -130,7 +130,8 @@ router.put(
   (req, res) => {
     console.log(req.body, req.params.aID);
     Alert.findByIdAndUpdate(req.params.aID, { $set: req.body }, { new: true })
-      .then(alert => res.json(alert))
+      .then(() => getAllAlerts())
+      .then(alerts => res.status(201).json(alerts))
       .catch(err => console.log(err));
   }
 );
