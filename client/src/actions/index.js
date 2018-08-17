@@ -62,6 +62,7 @@ export function deletePhotoUrl() {
 }
 export function editAlert(aID, values) {
   console.log("editAlert", aID);
+  axios.defaults.headers.common["Authorization"] = localStorage.jwtToken;
   const request = axios.put(`${ROOT_URL}/api/alert/${aID}`, values);
   return {
     type: EDIT_ALERT,
