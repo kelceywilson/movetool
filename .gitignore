@@ -1,5 +1,5 @@
 /node_modules
-package-lock.json
+# package-lock.json
 /config/keys_dev.js
 .DS_Store
 .env
@@ -7,18 +7,18 @@ package-lock.json
 /client/node_modules
 
 # testing
-/client/coverage
+# /client/coverage
 
 # production
-/client/build
+# /client/build
 
 # misc
-/client/.DS_Store
-/client/.env.local
-/client/.env.development.local
-/client/.env.test.local
-/client/.env.production.local
+# /client/.DS_Store
+# /client/.env.local
+# /client/.env.development.local
+# /client/.env.test.local
+# /client/.env.production.local
 
-/client/npm-debug.log*
-/client/yarn-debug.log*
-/client/yarn-error.log*
+# /client/npm-debug.log*
+# /client/yarn-debug.log*
+# /client/yarn-error.log*
