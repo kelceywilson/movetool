@@ -84,10 +84,6 @@ class AlertDetail extends Component {
   // handler, and if ok, then to the onSubmit function
   render() {
     const { errors, sameUser } = this.state;
-    const { user } = this.props.auth;
-    console.log(user, this.state.user);
-
-    const saveChangesButton = <button type="submit">SAVE CHANGES</button>;
 
     const editable = (
       <div>
@@ -125,27 +121,14 @@ class AlertDetail extends Component {
 
     const notEditable = (
       <div>
-        <form onSubmit={this.onSubmit}>
-          <p value={this.state.alert_type} />
-          <InputGroup
-            placeholder="Title"
-            name="title"
-            value={this.state.title}
-            onChange={this.onChange}
-            error={errors.title}
-            disabled="true"
-          />
-          <Field label="Photo" name="photo_url" component={FileUploader} />
-          <button type="submit">SAVE CHANGES</button>
-          <button onClick={this.onCancel.bind(this)}>Cancel</button>
-        </form>
-        <button
-          className="alert-delete"
-          onClick={() => this.props.deleteAlert(this.props.alerts.alert._id)}
-        >
-          {" "}
-          Delete Alert{" "}
-        </button>
+        <h3>{this.state.alert_type}</h3>
+        <h2>{this.state.title}</h2>
+        <img
+          src={this.props.photo_url}
+          className="alert-thumb"
+          alt={this.state.title}
+        />
+        <button onClick={this.onCancel.bind(this)}>Cancel</button>
       </div>
     );
 
