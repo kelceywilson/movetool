@@ -3,10 +3,12 @@ import { connect } from "react-redux";
 // import { bindActionCreators } from 'redux'
 import _ from "lodash";
 import Modal from "react-responsive-modal";
+import { Link } from "react-router-dom";
 
 import AlertDetail from "./AlertDetail";
 import NewAlert from "./new_alert";
 import add from "../../img/add.png";
+import Spinner from "../common/Spinner";
 
 import {
   closeModal,
@@ -91,27 +93,40 @@ class AlertList extends Component {
     }
   }
   render() {
+    const { isAuthenticated } = this.props.auth;
+
     if (!this.props.alerts.list) {
       return (
         <div>
           <p>Loading....</p>
-          <p>(Heroko's free servers can take 30 seconds.)</p>
+          <Spinner />
+          <p>(Free servers can take awhile sometimes.)</p>
         </div>
       );
     }
+
+    const loginButton = (
+      <button>
+        <Link className="nav-link" to="/login">
+          Login to Post Alert
+        </Link>
+      </button>
+    );
+
+    const createAlertButton = (
+      <button
+        onClick={() => this.props.openModal({ whichModal: "newAlertModal" })}
+        className="alert-new-button"
+      >
+        CREATE
+        <img className="icon" src={add} alt="add alert" />
+        ALERT
+      </button>
+    );
     return (
       <div>
         <div className="create-new-alert-button-div">
-          <button
-            onClick={() =>
-              this.props.openModal({ whichModal: "newAlertModal" })
-            }
-            className="alert-new-button"
-          >
-            CREATE
-            <img className="icon" src={add} alt="add alert" />
-            ALERT
-          </button>
+          {isAuthenticated ? createAlertButton : loginButton}
         </div>
         {this.getAllButton()}
         <div className="alert-list">
@@ -129,6 +144,7 @@ function mapStateToProps(state) {
   //  this is the glue between react & redux
   return {
     alerts: state.alerts,
+    auth: state.auth,
     filtered: state.filtered,
     open: state.open,
     photo_url: state.file.photo_url

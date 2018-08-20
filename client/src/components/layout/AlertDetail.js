@@ -18,7 +18,10 @@ class AlertDetail extends Component {
       title: "",
       photo_url: "",
       _id: "",
-      errors: {}
+      disabled: true,
+      errors: {},
+      user: "",
+      sameUser: ""
     };
 
     this.onChange = this.onChange.bind(this);
@@ -26,12 +29,17 @@ class AlertDetail extends Component {
   }
   componentDidMount() {
     console.log("componentDidMount");
-    const { alert_type, title, photo_url, _id } = this.props.alerts.alert;
+    const { alert_type, title, photo_url, _id, user } = this.props.alerts.alert;
+    const sameUser = user === this.props.auth.user.id ? "same" : "";
+    console.log(this.props.auth.user, user, "user");
+
     this.setState({
       alert_type: alert_type,
       title: title,
       photo_url: photo_url,
-      _id: _id
+      _id: _id,
+      user: user,
+      sameUser: sameUser
     });
   }
   // componentWillCrecieveProps(nextProps) {
@@ -75,9 +83,13 @@ class AlertDetail extends Component {
   // it runs the submitted values through the error
   // handler, and if ok, then to the onSubmit function
   render() {
-    const { errors } = this.state;
+    const { errors, sameUser } = this.state;
+    const { user } = this.props.auth;
+    console.log(user, this.state.user);
 
-    return (
+    const saveChangesButton = <button type="submit">SAVE CHANGES</button>;
+
+    const editable = (
       <div>
         <form onSubmit={this.onSubmit}>
           <SelectList
@@ -87,6 +99,7 @@ class AlertDetail extends Component {
             onChange={this.onChange}
             options={alert_types}
             error={errors.alert_type}
+            disabled="true"
           />
           <InputGroup
             placeholder="Title"
@@ -94,6 +107,7 @@ class AlertDetail extends Component {
             value={this.state.title}
             onChange={this.onChange}
             error={errors.title}
+            disabled="true"
           />
           <Field label="Photo" name="photo_url" component={FileUploader} />
           <button type="submit">SAVE CHANGES</button>
@@ -103,10 +117,39 @@ class AlertDetail extends Component {
           className="alert-delete"
           onClick={() => this.props.deleteAlert(this.props.alerts.alert._id)}
         >
-          Delete Alert
+          {" "}
+          Delete Alert{" "}
         </button>
       </div>
     );
+
+    const notEditable = (
+      <div>
+        <form onSubmit={this.onSubmit}>
+          <p value={this.state.alert_type} />
+          <InputGroup
+            placeholder="Title"
+            name="title"
+            value={this.state.title}
+            onChange={this.onChange}
+            error={errors.title}
+            disabled="true"
+          />
+          <Field label="Photo" name="photo_url" component={FileUploader} />
+          <button type="submit">SAVE CHANGES</button>
+          <button onClick={this.onCancel.bind(this)}>Cancel</button>
+        </form>
+        <button
+          className="alert-delete"
+          onClick={() => this.props.deleteAlert(this.props.alerts.alert._id)}
+        >
+          {" "}
+          Delete Alert{" "}
+        </button>
+      </div>
+    );
+
+    return <div>{sameUser === "same" ? editable : notEditable}</div>;
   }
 }
 
@@ -133,8 +176,10 @@ AlertDetail.propTypes = {
 function mapStateToProps(state) {
   return {
     alerts: state.alerts,
+    auth: state.auth,
+    errors: state.errors,
     photo_url: state.file.photo_url,
-    errors: state.errors
+    sameUser: state.sameUser
   };
 }
 

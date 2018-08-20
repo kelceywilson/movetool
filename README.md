@@ -29,6 +29,9 @@ secretOrKey: [yours]
 3. Only allow users to edit/delete their own alerts
 
 - Hide delete & edit buttons for others
+- Add validation to route
+- Empty SET_current_user on logout
+- style buttons
 
 4. Disable input boxes until edit button is clicked
 
@@ -39,3 +42,9 @@ secretOrKey: [yours]
 - Add posted by line in detail
 
 6. Add description input etc to alert
+
+7. Add how to guide
+
+8. Type limits & max file size cloudinary
+
+9. License? AGPL, LGPL, GPL?

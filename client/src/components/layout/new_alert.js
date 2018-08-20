@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Field, reduxForm, reset } from "redux-form";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import FileUploader from "./FileUploader";
 // import AlertTypeChooser from "./alert_type_chooser";
@@ -66,6 +67,16 @@ class NewAlert extends Component {
   // handler, and if ok, then to the onSubmit function
   render() {
     const { errors } = this.state;
+    const { isAuthenticated } = this.props.auth;
+    const loginButton = (
+      <button>
+        <Link className="nav-link" to="/login">
+          Login to Post Alert
+        </Link>
+      </button>
+    );
+
+    const submitAlertButton = <button type="submit">SUBMIT AN ALERT</button>;
 
     return (
       <div>
@@ -85,8 +96,8 @@ class NewAlert extends Component {
             onChange={this.onChange}
             error={errors.title}
           />
-          <Field label="Photo" name="photo_url" component={FileUploader} />
-          <button type="submit">SUBMIT AN ALERT</button>
+          <Field label="Photo" name="photo_url" component={FileUploader} />{" "}
+          {isAuthenticated ? submitAlertButton : loginButton}
           <button onClick={this.onCancel.bind(this)}>Cancel</button>
         </form>
       </div>
@@ -113,9 +124,10 @@ NewAlert.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    photo_url: state.file.photo_url,
     alert_type: state.alert_type.alert_type,
-    errors: state.errors
+    auth: state.auth,
+    errors: state.errors,
+    photo_url: state.file.photo_url
   };
 }
 
