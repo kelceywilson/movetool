@@ -23,8 +23,6 @@ class AlertList extends Component {
     this.props.getAllAlerts();
   }
   createAlertList() {
-    console.log(this.props);
-
     return _.map(this.props.alerts.list, alert => {
       return (
         <div className="alert-div" key={alert._id}>
@@ -35,8 +33,10 @@ class AlertList extends Component {
           />
           <h4 className="alert-type">{alert.alert_type}</h4>
           <h5 className="alert-title">{alert.title}</h5>
+          <p className="most-relevant">${alert.price_value}</p>
+          <p className="city">{alert.city}</p>
           <button
-            className="alert-delete"
+            className="alert-detail-button"
             onClick={() => {
               this.props.getAlertById(alert._id).then(() => {
                 this.props.openModal({
@@ -76,8 +76,7 @@ class AlertList extends Component {
   };
 
   modalChooser() {
-    const { open, whichModal, editAlertId } = this.props.open;
-    console.log("whichModal", whichModal, editAlertId);
+    const { open, whichModal } = this.props.open;
     if (whichModal === "alertDetailModal") {
       return (
         <Modal open={open} onClose={this.onCloseModal} center>

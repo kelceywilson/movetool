@@ -16,6 +16,7 @@ const AlertSchema = new Schema({
     index: true,
     required: true
   },
+  description: String,
   photo_url: String,
   name: String,
   avatar: String,
@@ -51,7 +52,7 @@ const AlertSchema = new Schema({
   county: String,
   public: Boolean,
   body: String,
-  price_value: Number,
+  price_value: String,
   item_or_unit: String,
   measurement: String,
   discount: Number,

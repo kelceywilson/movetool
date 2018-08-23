@@ -11,7 +11,6 @@ import {
 // const mappedAlerts = action => _.mapKeys(action.payload.data, '_id')
 
 export default function(state = {}, action) {
-  console.log("action received", action);
   switch (action.type) {
     case ADD_NEW_ALERT:
       return { list: _.mapKeys(action.payload.data, "_id") };

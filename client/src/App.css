@@ -8,10 +8,6 @@ body {
 
 /* and as it is such, so also as such is it unto you */
 
-/* <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Home">Home</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> */
-
-/* <div>Icons made by <a href="https://www.flaticon.com/authors/xnimrodx" title="Portfolio">Portfolio</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> */
-
 .icon {
   height: 20px;
   width: 20px;
@@ -81,6 +77,7 @@ body {
   align-items: center;
   /* padding: 0 0 20px; */
   justify-content: center;
+  padding-bottom: 10px;
 }
 
 .alert-detail {
@@ -88,11 +85,15 @@ body {
   flex-direction: column;
   max-width: 250px;
   /* margin: 20px; */
+  /* border-radius: 20px; */
 }
 
-.alert-delete {
+.alert-detail-button {
   margin-bottom: 5px;
   margin-left: 5px;
+  border: none;
+  background-color: #bada55;
+  border-radius: 20px;
 }
 
 .alert-div {
@@ -114,6 +115,12 @@ body {
 .alert-thumb {
   width: 200px;
   height: 200px;
+  border-radius: 10px 10px 0 0;
+}
+
+.alert-detail-thumb {
+  width: 250px;
+  height: 250px;
   border-radius: 10px 10px 0 0;
 }
 
@@ -147,6 +154,7 @@ body {
 .width-100-percent {
   width: 100%;
   align-self: center;
+  margin-bottom: 5px;
 }
 
 .error {
@@ -178,10 +186,9 @@ body {
 }
 
 .menu {
-  /* display: inline; */
+  /* display: ; */
   display: flex;
   justify-content: space-between;
-  /* margin: 10px; */
 }
 
 img {
@@ -190,7 +197,6 @@ img {
 
 .alert-container {
   position: relative;
-  /* background: url('./img/showcase.jpg') no-repeat; */
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -200,6 +206,14 @@ img {
 
 .alert-container-inner {
   padding-top: 80px;
+}
+
+.most-relevant {
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid gold;
+  border-bottom: 1px solid gold;
+  padding: 3px 0;
 }
 
 .dark-overlay {
@@ -222,4 +236,16 @@ img {
 
 .form-control::placeholder {
   color: #bbb !important;
+}
+
+.tomato {
+  background-color: tomato;
+}
+
+.cadetblue {
+  background-color: rgb(214, 247, 236);
+}
+
+.khaki {
+  /* background-color: rgb(248, 244, 210) */
 }

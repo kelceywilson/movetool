@@ -26,6 +26,9 @@ class NewAlert extends Component {
       title: "",
       alert_type: "",
       photo_url: "",
+      description: "",
+      price_value: "",
+      city: "",
       errors: {}
     };
 
@@ -51,7 +54,10 @@ class NewAlert extends Component {
     const alertData = {
       alert_type: this.state.alert_type,
       title: this.state.title,
-      photo_url: this.props.photo_url
+      photo_url: this.props.photo_url,
+      description: this.state.description,
+      price_value: this.state.price_value,
+      city: this.state.city
     };
 
     this.props.addNewAlert(alertData);
@@ -96,6 +102,27 @@ class NewAlert extends Component {
             onChange={this.onChange}
             error={errors.title}
           />
+          <InputGroup
+            placeholder="Description"
+            name="description"
+            value={this.state.description}
+            onChange={this.onChange}
+            error={errors.description}
+          />
+          <InputGroup
+            placeholder="Price"
+            name="price_value"
+            value={this.state.price_value}
+            onChange={this.onChange}
+            error={errors.price_value}
+          />
+          <InputGroup
+            placeholder="City"
+            name="city"
+            value={this.state.city}
+            onChange={this.onChange}
+            error={errors.city}
+          />
           <Field label="Photo" name="photo_url" component={FileUploader} />{" "}
           {isAuthenticated ? submitAlertButton : loginButton}
           <button onClick={this.onCancel.bind(this)}>Cancel</button>
@@ -127,7 +154,10 @@ function mapStateToProps(state) {
     alert_type: state.alert_type.alert_type,
     auth: state.auth,
     errors: state.errors,
-    photo_url: state.file.photo_url
+    photo_url: state.file.photo_url,
+    description: state.description,
+    price_value: state.price_value,
+    city: state.city
   };
 }
 

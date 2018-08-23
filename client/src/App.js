@@ -25,8 +25,6 @@ import "./App.css";
 // if (localStorage.jwtToken && !localStorage.bypass) {
 if (localStorage.jwtToken) {
   // Set auth token header auth
-  console.log(localStorage.modal);
-
   setAuthToken(localStorage.jwtToken, localStorage.modal);
   // Decode token and get user info and exp
   const decoded = jwt_decode(localStorage.jwtToken);
