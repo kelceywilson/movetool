@@ -18,7 +18,6 @@ export const UPLOAD_FILE = "UPLOAD_FILE";
 
 // ALERT ACTIONS //
 export function addNewAlert(values) {
-  console.log("addNewAlert", values);
   axios.defaults.headers.common["Authorization"] = localStorage.jwtToken;
   const request = axios.post(`/api/alert`, values);
   return {
@@ -45,7 +44,6 @@ export function addNewAlert(values) {
 //     });
 // };
 export function deleteAlert(alertId) {
-  console.log("deleteAlert", alertId);
   const request = axios.delete(`/api/alert/${alertId}`);
   return {
     type: DELETE_ALERT,
@@ -53,7 +51,6 @@ export function deleteAlert(alertId) {
   };
 }
 export function deletePhotoUrl() {
-  console.log("deletePhotoUrl");
   return {
     type: DELETE_PHOTO_URL
   };
@@ -67,7 +64,6 @@ export function editAlert(aID, values) {
   };
 }
 export function filterAlerts(filter) {
-  console.log("filterAlerts", filter);
   const request = axios.get(`/api/alert/filter?filterBy=${filter}`);
   return {
     type: FILTER_ALERTS,
@@ -95,7 +91,6 @@ export function getDetails(alertId) {
   };
 }
 export function searchAlerts(terms) {
-  console.log("searchAlerts", terms);
   const request = axios.get(`/api/alert/search?terms=${terms}`);
   return {
     type: FILTER_ALERTS,
@@ -103,14 +98,12 @@ export function searchAlerts(terms) {
   };
 }
 // export function selectAlert(alertId){
-//   console.log('selectAlert', alertId);
 //   return {
 //     type: SELECT_ALERT,
 //     payload: alertId
 //   }
 // }
 export function setAlertType(alertType) {
-  console.log("setAlertType", alertType);
   return {
     type: SET_ALERT_TYPE,
     payload: alertType
@@ -148,14 +141,12 @@ export const uploadFile = event => {
 
 // MODAL ACTIONS //
 export function openModal(payload) {
-  // localStorage.setItem("modal", true);
   return {
     type: OPEN_MODAL,
     payload: payload
   };
 }
 export function closeModal() {
-  // localStorage.setItem("modal", false);
   return {
     type: CLOSE_MODAL
   };
