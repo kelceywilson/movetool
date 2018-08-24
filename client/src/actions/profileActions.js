@@ -1,7 +1,6 @@
 import axios from "axios";
 
 import {
-  ROOT_URL,
   GET_PROFILE,
   GET_PROFILES,
   PROFILE_LOADING,
@@ -14,7 +13,7 @@ import {
 export const getCurrentProfile = () => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get(`${ROOT_URL}/api/profile`)
+    .get(`/api/profile`)
     .then(res =>
       dispatch({
         type: GET_PROFILE,
@@ -33,7 +32,7 @@ export const getCurrentProfile = () => dispatch => {
 export const getProfileByHandle = handle => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get(`${ROOT_URL}/api/profile/handle/${handle}`)
+    .get(`/api/profile/handle/${handle}`)
     .then(res =>
       dispatch({
         type: GET_PROFILE,
@@ -51,7 +50,7 @@ export const getProfileByHandle = handle => dispatch => {
 // Create Profile
 export const createProfile = (profileData, history) => dispatch => {
   axios
-    .post(`${ROOT_URL}/api/profile`, profileData)
+    .post(`/api/profile`, profileData)
     .then(res => history.push("/dashboard"))
     .catch(err =>
       dispatch({
@@ -65,7 +64,7 @@ export const createProfile = (profileData, history) => dispatch => {
 export const getProfiles = () => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get(`${ROOT_URL}/api/profile/all`)
+    .get(`/api/profile/all`)
     .then(res =>
       dispatch({
         type: GET_PROFILES,
@@ -84,7 +83,7 @@ export const getProfiles = () => dispatch => {
 export const deleteAccount = () => dispatch => {
   if (window.confirm("Are you sure? This can NOT be undone!")) {
     axios
-      .delete(`${ROOT_URL}/api/profile`)
+      .delete(`/api/profile`)
       .then(res =>
         dispatch({
           type: SET_CURRENT_USER,

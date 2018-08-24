@@ -1,6 +1,4 @@
 import axios from "axios";
-import { ROOT_URL } from "./types";
-// const ROOT_URL = "https://mighty-castle-33351.herokuapp.com";
 
 export const ADD_NEW_ALERT = "ADD_NEW_ALERT";
 export const CLOSE_MODAL = "CLOSE_MODAL";
@@ -22,7 +20,7 @@ export const UPLOAD_FILE = "UPLOAD_FILE";
 export function addNewAlert(values) {
   console.log("addNewAlert", values);
   axios.defaults.headers.common["Authorization"] = localStorage.jwtToken;
-  const request = axios.post(`${ROOT_URL}/api/alert`, values);
+  const request = axios.post(`/api/alert`, values);
   return {
     type: ADD_NEW_ALERT,
     payload: request
@@ -48,7 +46,7 @@ export function addNewAlert(values) {
 // };
 export function deleteAlert(alertId) {
   console.log("deleteAlert", alertId);
-  const request = axios.delete(`${ROOT_URL}/api/alert/${alertId}`);
+  const request = axios.delete(`/api/alert/${alertId}`);
   return {
     type: DELETE_ALERT,
     payload: request
@@ -61,9 +59,8 @@ export function deletePhotoUrl() {
   };
 }
 export function editAlert(aID, values) {
-  console.log("editAlert", aID);
   axios.defaults.headers.common["Authorization"] = localStorage.jwtToken;
-  const request = axios.put(`${ROOT_URL}/api/alert/${aID}`, values);
+  const request = axios.put(`/api/alert/${aID}`, values);
   return {
     type: EDIT_ALERT,
     payload: request
@@ -71,21 +68,21 @@ export function editAlert(aID, values) {
 }
 export function filterAlerts(filter) {
   console.log("filterAlerts", filter);
-  const request = axios.get(`${ROOT_URL}/api/alert/filter?filterBy=${filter}`);
+  const request = axios.get(`/api/alert/filter?filterBy=${filter}`);
   return {
     type: FILTER_ALERTS,
     payload: request
   };
 }
 export function getAllAlerts() {
-  const request = axios.get(`${ROOT_URL}/api/alert`);
+  const request = axios.get(`/api/alert`);
   return {
     type: GET_ALL_ALERTS,
     payload: request
   };
 }
 export function getAlertById(id) {
-  const request = axios.get(`${ROOT_URL}/api/alert/${id}`);
+  const request = axios.get(`/api/alert/${id}`);
   return {
     type: GET_ONE_ALERT,
     payload: request
@@ -99,7 +96,7 @@ export function getDetails(alertId) {
 }
 export function searchAlerts(terms) {
   console.log("searchAlerts", terms);
-  const request = axios.get(`${ROOT_URL}/api/alert/search?terms=${terms}`);
+  const request = axios.get(`/api/alert/search?terms=${terms}`);
   return {
     type: FILTER_ALERTS,
     payload: request
@@ -166,21 +163,21 @@ export function closeModal() {
 
 // USER ACTIONS? //
 // redux thunk version of fetchMessage
-export function fetchMessage() {
-  return function(dispatch) {
-    axios
-      .get(ROOT_URL, {
-        headers: { authorization: localStorage.getItem("token") }
-      })
-      .then(response => {
-        console.log(response);
-        dispatch({
-          type: FETCH_MESSAGE,
-          payload: response.data.message
-        });
-      });
-  };
-}
+// export function fetchMessage() {
+//   return function(dispatch) {
+//     axios
+//       .get(ROOT_URL, {
+//         headers: { authorization: localStorage.getItem("token") }
+//       })
+//       .then(response => {
+//         console.log(response);
+//         dispatch({
+//           type: FETCH_MESSAGE,
+//           payload: response.data.message
+//         });
+//       });
+//   };
+// }
 // redux promise version
 // export function fetchMessage(){
 //   const request = axios.get(ROOT_URL, {
