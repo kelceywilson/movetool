@@ -20,12 +20,10 @@ const getAllAlerts = () =>
  * @return {Promise} - resolves to array of objects representing relevant alerts
  */
 const searchAlerts = terms => {
-  console.log("search", terms);
   if (terms === "") {
     return getAllAlerts();
   }
-  const splitTerms = terms.split(" ");
-  console.log(splitTerms);
+  // const splitTerms = terms.split(" ");
   // title: { $regex: terms, $options: "ix" }
 
   return Alert.find({ $text: { $search: terms } });
@@ -60,7 +58,6 @@ const searchAlerts = terms => {
 };
 
 const filterAlerts = filterBy => {
-  console.log("filter", filterBy);
   return Alert.where({
     alert_type: filterBy
   });
@@ -107,7 +104,6 @@ router.post(
       ...req.body,
       user: req.user.id
     });
-    console.log(newAlert);
 
     newAlert
       .save()
@@ -128,7 +124,6 @@ router.put(
     session: false
   }),
   (req, res) => {
-    console.log(req.body, req.params.aID);
     Alert.findByIdAndUpdate(req.params.aID, { $set: req.body }, { new: true })
       .then(() => getAllAlerts())
       .then(alerts => res.status(201).json(alerts))

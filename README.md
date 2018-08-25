@@ -20,18 +20,19 @@ secretOrKey: [yours]
 
 ## TODO
 
-1. Fix change photo
+x1. Fix change photo
 
-2. Only allow logged in users to create alert
+x2. Only allow logged in users to create alert
 
-- Make Create Alert button Login to Create Alert Button
+x- Make Create Alert button Login to Create Alert Button
 
-3. Only allow users to edit/delete their own alerts
+x3. Only allow users to edit/delete their own alerts
 
-- Hide delete & edit buttons for others
+x- Hide delete & edit buttons for others
+
 - Add validation to route
-- Empty SET_current_user on logout
-- style buttons
+  x- Empty SET_current_user on logout
+  x- style buttons
 
 4. Disable input boxes until edit button is clicked
 
@@ -41,10 +42,16 @@ secretOrKey: [yours]
 
 - Add posted by line in detail
 
-6. Add description input etc to alert
+x6. Add description input etc to alert
 
 7. Add how to guide
 
 8. Type limits & max file size cloudinary
 
 9. License? AGPL, LGPL, GPL?
+
+10. Make input fields conditional upon alert type
+
+11. make alert type banner change color based on alert type
+
+12. Make most relevant field apply correctly to all alert types

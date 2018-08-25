@@ -211,8 +211,8 @@ img {
 .most-relevant {
   display: flex;
   justify-content: center;
-  border-top: 1px solid gold;
-  border-bottom: 1px solid gold;
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
   padding: 3px 0;
 }
 
@@ -248,4 +248,16 @@ img {
 
 .khaki {
   /* background-color: rgb(248, 244, 210) */
+}
+
+.alert-footer {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px 0 5px;
+}
+
+.city {
+  font-size: .7em;
+  line-height: 2em;
+  margin-top: 10px;
 }

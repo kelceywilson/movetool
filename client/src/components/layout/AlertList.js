@@ -34,21 +34,23 @@ class AlertList extends Component {
           <h4 className="alert-type">{alert.alert_type}</h4>
           <h5 className="alert-title">{alert.title}</h5>
           <p className="most-relevant">${alert.price_value}</p>
-          <p className="city">{alert.city}</p>
-          <button
-            className="alert-detail-button"
-            onClick={() => {
-              this.props.getAlertById(alert._id).then(() => {
-                this.props.openModal({
-                  whichModal: "alertDetailModal",
-                  editAlertId: alert._id,
-                  photo_url: alert.photo_url
+          <div className="alert-footer">
+            <button
+              className="alert-detail-button"
+              onClick={() => {
+                this.props.getAlertById(alert._id).then(() => {
+                  this.props.openModal({
+                    whichModal: "alertDetailModal",
+                    editAlertId: alert._id,
+                    photo_url: alert.photo_url
+                  });
                 });
-              });
-            }}
-          >
-            Details
-          </button>
+              }}
+            >
+              Details
+            </button>
+            <p className="city">{alert.city}</p>
+          </div>
         </div>
       );
     });
