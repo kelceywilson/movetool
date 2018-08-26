@@ -17,8 +17,6 @@ class Filter extends Component {
   }
 
   onChange(event) {
-    console.log(event.target);
-
     this.props.filterAlerts(event.target.value);
   }
 

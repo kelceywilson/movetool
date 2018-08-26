@@ -29,6 +29,7 @@ class NewAlert extends Component {
       description: "",
       price_value: "",
       city: "",
+      event_date_time: "",
       errors: {}
     };
 
@@ -57,6 +58,7 @@ class NewAlert extends Component {
       photo_url: this.props.photo_url,
       description: this.state.description,
       price_value: this.state.price_value,
+      event_date_time: this.state.event_date_time,
       city: this.state.city
     };
 
@@ -66,6 +68,8 @@ class NewAlert extends Component {
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+    if (e.target.value === "SALE") {
+    }
   }
 
   // handleSubmit is given by reduxForm (like connect)
@@ -81,7 +85,15 @@ class NewAlert extends Component {
         </Link>
       </button>
     );
-
+    const sale = (
+      <InputGroup
+        placeholder="Price"
+        name="price_value"
+        value={this.state.price_value}
+        onChange={this.onChange}
+        error={errors.price_value}
+      />
+    );
     const submitAlertButton = <button type="submit">SUBMIT AN ALERT</button>;
 
     return (
@@ -109,13 +121,7 @@ class NewAlert extends Component {
             onChange={this.onChange}
             error={errors.description}
           />
-          <InputGroup
-            placeholder="Price"
-            name="price_value"
-            value={this.state.price_value}
-            onChange={this.onChange}
-            error={errors.price_value}
-          />
+          {sale}
           <InputGroup
             placeholder="City"
             name="city"
@@ -157,6 +163,7 @@ function mapStateToProps(state) {
     photo_url: state.file.photo_url,
     description: state.description,
     price_value: state.price_value,
+    event_date_time: state.event_date_time,
     city: state.city
   };
 }
@@ -173,8 +180,3 @@ export default reduxForm({
     { addNewAlert, closeModal }
   )(NewAlert)
 );
-
-// export default connect(
-//   mapStateToProps,
-//   { addNewAlert, closeModal }
-// )(NewAlert);

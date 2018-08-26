@@ -52,6 +52,9 @@ x6. Add description input etc to alert
 
 10. Make input fields conditional upon alert type
 
+- sale: price
+- event: date, cost
+
 11. make alert type banner change color based on alert type
 
 12. Make most relevant field apply correctly to all alert types

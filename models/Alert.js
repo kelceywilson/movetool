@@ -45,6 +45,8 @@ const AlertSchema = new Schema({
       }
     }
   ],
+  price_value: String,
+  event_date_time: Date,
   address: String,
   city: String,
   state: String,
@@ -52,7 +54,6 @@ const AlertSchema = new Schema({
   county: String,
   public: Boolean,
   body: String,
-  price_value: String,
   item_or_unit: String,
   measurement: String,
   discount: Number,
@@ -61,7 +62,6 @@ const AlertSchema = new Schema({
   acreage: Number,
   frequency: Number,
   expires: Date,
-  event_date_time: Date,
   venue_name: String,
   rsvp_link: String,
   company: String,
