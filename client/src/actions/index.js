@@ -7,6 +7,7 @@ export const DELETE_PHOTO_URL = "DELETE_PHOTO_URL";
 export const EDIT_ALERT = "EDIT_ALERT";
 export const FETCH_MESSAGE = "FETCH_MESSAGE";
 export const FILTER_ALERTS = "FILTER_ALERTS";
+export const GET_ALERT_AUTHOR = "GET_ALERT_AUTHOR";
 export const GET_ALL_ALERTS = "GET_ALL_ALERTS";
 export const GET_ERRORS = "GET_ERRORS";
 export const GET_ONE_ALERT = "GET_ONE_ALERT";
@@ -18,6 +19,8 @@ export const UPLOAD_FILE = "UPLOAD_FILE";
 
 // ALERT ACTIONS //
 export function addNewAlert(values) {
+  console.log(values);
+
   axios.defaults.headers.common["Authorization"] = localStorage.jwtToken;
   const request = axios.post(`/api/alert`, values);
   return {
@@ -137,6 +140,16 @@ export const uploadFile = event => {
         console.log(err);
       });
   };
+};
+
+// Get alert author by user id
+export const getUserById = userId => dispatch => {
+  axios.get(`/api/user/${userId}`).then(user => {
+    dispatch({
+      type: GET_ALERT_AUTHOR,
+      payload: user
+    });
+  });
 };
 
 // MODAL ACTIONS //

@@ -3,6 +3,7 @@ import {
   ADD_NEW_ALERT,
   DELETE_ALERT,
   EDIT_ALERT,
+  GET_ALERT_AUTHOR,
   GET_ALL_ALERTS,
   GET_ONE_ALERT,
   FILTER_ALERTS
@@ -24,6 +25,8 @@ export default function(state = {}, action) {
       return { list: _.mapKeys(action.payload.data, "_id") };
     case GET_ONE_ALERT:
       return { ...state, alert: action.payload.data };
+    case GET_ALERT_AUTHOR:
+      return { alert_author: action.payload };
     default:
       return state;
   }

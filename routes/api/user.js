@@ -128,4 +128,15 @@ router.get(
   }
 );
 
+/**
+ * @route   GET api/user/:userId
+ * @desc    Get user by Id
+ * @access  Public
+ */
+router.get("/:userId", (req, res) => {
+  User.findById(req.params.userId)
+    .then(user => res.json(user))
+    .catch(err => console.log(err));
+});
+
 module.exports = router;

@@ -22,7 +22,8 @@ class AlertDetail extends Component {
       description: "",
       price_value: "",
       city: "",
-      sameUser: ""
+      sameUser: "",
+      name: ""
     };
 
     this.onChange = this.onChange.bind(this);
@@ -34,6 +35,7 @@ class AlertDetail extends Component {
       title,
       photo_url,
       _id,
+      name,
       user,
       description,
       price_value,
@@ -47,6 +49,7 @@ class AlertDetail extends Component {
       title: title,
       photo_url: photo_url,
       _id: _id,
+      name: name,
       user: user,
       description: description,
       price_value: price_value,
@@ -168,7 +171,10 @@ class AlertDetail extends Component {
         <h5 className="alert-title">{this.state.title}</h5>
         <p className="description">{this.state.description}</p>
         <p className="price">{this.state.price_value}</p>
-        <p className="city">{this.state.city}</p>
+        <div className="alert-footer">
+          <div className="name">{this.state.name}</div>
+          <div className="city">{this.state.city}</div>
+        </div>
         <button onClick={this.onCancel.bind(this)}>Cancel</button>
       </div>
     );

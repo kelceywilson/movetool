@@ -59,7 +59,8 @@ class NewAlert extends Component {
       description: this.state.description,
       price_value: this.state.price_value,
       event_date_time: this.state.event_date_time,
-      city: this.state.city
+      city: this.state.city,
+      name: this.props.auth.user.first_name
     };
 
     this.props.addNewAlert(alertData);
