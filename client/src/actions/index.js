@@ -19,8 +19,6 @@ export const UPLOAD_FILE = "UPLOAD_FILE";
 
 // ALERT ACTIONS //
 export function addNewAlert(values) {
-  console.log(values);
-
   axios.defaults.headers.common["Authorization"] = localStorage.jwtToken;
   const request = axios.post(`/api/alert`, values);
   return {

@@ -50,11 +50,15 @@ x6. Add description input etc to alert
 
 9. License? AGPL, LGPL, GPL?
 
-10. Make input fields conditional upon alert type
+x10. Make input fields conditional upon alert type
 
-- sale: price
-- event: date, cost
+x- sale: price
+x- event: date, cost
 
 11. make alert type banner change color based on alert type
 
 12. Make most relevant field apply correctly to all alert types
+
+13. Good story page
+
+14.

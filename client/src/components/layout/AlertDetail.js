@@ -23,7 +23,8 @@ class AlertDetail extends Component {
       price_value: "",
       city: "",
       sameUser: "",
-      name: ""
+      name: "",
+      createdAt: ""
     };
 
     this.onChange = this.onChange.bind(this);
@@ -39,10 +40,12 @@ class AlertDetail extends Component {
       user,
       description,
       price_value,
-      city
+      city,
+      createdAt
     } = this.props.alerts.alert;
 
     const sameUser = user === this.props.auth.user.id ? "same" : "";
+    const createdAtDate = new Date(createdAt).toDateString();
 
     this.setState({
       alert_type: alert_type,
@@ -54,7 +57,8 @@ class AlertDetail extends Component {
       description: description,
       price_value: price_value,
       city: city,
-      sameUser: sameUser
+      sameUser: sameUser,
+      createdAt: createdAtDate
     });
   }
   // componentWillCrecieveProps(nextProps) {
@@ -172,8 +176,11 @@ class AlertDetail extends Component {
         <p className="description">{this.state.description}</p>
         <p className="price">{this.state.price_value}</p>
         <div className="alert-footer">
-          <div className="name">{this.state.name}</div>
-          <div className="city">{this.state.city}</div>
+          <div>{this.state.city}</div>
+        </div>
+        <div className="city">
+          <div>Posted {this.state.createdAt}</div>
+          <div className="name">by {this.state.name}</div>
         </div>
         <button onClick={this.onCancel.bind(this)}>Cancel</button>
       </div>

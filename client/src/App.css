@@ -260,4 +260,23 @@ img {
   font-size: .7em;
   line-height: 2em;
   margin-top: 10px;
+  display: flex;
+  justify-content: center;
 }
+
+.name {
+  margin-left: 3px;
+}
+
+.navbar {
+  /* max-height: 30px !important; */
+  /* padding-bottom: 0 !important; */
+  margin-bottom: 0 !important;
+}
+
+/* .navbar-nav>li>a,
+.navbar-brand {
+  padding-top: 10px !important;
+  padding-bottom: 0 !important;
+  height: 30px;
+} */

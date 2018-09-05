@@ -24,6 +24,12 @@ class AlertList extends Component {
   }
   createAlertList() {
     return _.map(this.props.alerts.list, alert => {
+      const price = alert.price_value ? (
+        <p className="most-relevant">{alert.price_value}</p>
+      ) : (
+        undefined
+      );
+
       return (
         <div className="alert-div" key={alert._id}>
           <img
@@ -33,7 +39,7 @@ class AlertList extends Component {
           />
           <h4 className="alert-type">{alert.alert_type}</h4>
           <h5 className="alert-title">{alert.title}</h5>
-          <p className="most-relevant">${alert.price_value}</p>
+          {price}
           <div className="alert-footer">
             <button
               className="alert-detail-button"

@@ -18,6 +18,7 @@ const AlertSchema = new Schema({
   },
   description: String,
   photo_url: String,
+  price_value: String,
   name: String,
   avatar: String,
   likes: [
@@ -45,7 +46,6 @@ const AlertSchema = new Schema({
       }
     }
   ],
-  price_value: String,
   event_date_time: Date,
   address: String,
   city: String,
@@ -75,11 +75,11 @@ const AlertSchema = new Schema({
   note: String,
   createdAt: {
     type: Date,
-    default: Date.now
+    default: new Date()
   },
   updatedAt: {
     type: Date,
-    default: Date.now
+    default: new Date()
   }
 });
 

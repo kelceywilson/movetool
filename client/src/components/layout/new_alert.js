@@ -8,6 +8,7 @@ import FileUploader from "./FileUploader";
 // import AlertTypeChooser from "./alert_type_chooser";
 import { addNewAlert, closeModal } from "../../actions/index";
 import InputGroup from "../common/InputGroup";
+import TextField from "../common/TextField";
 import SelectList from "../common/SelectList";
 import alert_types from "../common/alert_types";
 // field.input is an object that contains a bunch of
@@ -37,14 +38,6 @@ class NewAlert extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  // onSubmit(values) {
-  //   console.log("onSubmit NewAlert form", this.props);
-  //   const photo_url = this.props.photo_url;
-  //   const alert_type = this.props.alert_type;
-  //   this.props.addNewAlert({ ...values, photo_url, alert_type });
-  //   this.props.closeModal();
-  // }
-
   onCancel() {
     this.props.closeModal();
   }
@@ -69,8 +62,6 @@ class NewAlert extends Component {
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    if (e.target.value === "SALE") {
-    }
   }
 
   // handleSubmit is given by reduxForm (like connect)
@@ -86,6 +77,7 @@ class NewAlert extends Component {
         </Link>
       </button>
     );
+
     const sale = (
       <InputGroup
         placeholder="Price"
@@ -95,6 +87,16 @@ class NewAlert extends Component {
         error={errors.price_value}
       />
     );
+    const date = (
+      <TextField
+        name="event_date_time"
+        type="date"
+        value={this.state.event_date_time}
+        onChange={this.onChange}
+        error={errors.event_date_time}
+      />
+    );
+
     const submitAlertButton = <button type="submit">SUBMIT AN ALERT</button>;
 
     return (
@@ -122,13 +124,16 @@ class NewAlert extends Component {
             onChange={this.onChange}
             error={errors.description}
           />
-          {sale}
+          {this.state.alert_type === "SALE" ? sale : undefined}
+          {this.state.alert_type === "EVENT" ? date : undefined}
+          {this.state.alert_type === "EVENT" ? sale : undefined}
           <InputGroup
             placeholder="City"
             name="city"
             value={this.state.city}
             onChange={this.onChange}
             error={errors.city}
+            disabled
           />
           <Field label="Photo" name="photo_url" component={FileUploader} />{" "}
           {isAuthenticated ? submitAlertButton : loginButton}

@@ -3,6 +3,7 @@ package-lock.json
 /config/keys_dev.js
 .DS_Store
 .env
+.vscode
 
 /client/node_modules
 
