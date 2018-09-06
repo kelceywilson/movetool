@@ -25,7 +25,7 @@ class AlertList extends Component {
   createAlertList() {
     return _.map(this.props.alerts.list, alert => {
       const price = alert.price_value ? (
-        <p className="most-relevant">{alert.price_value}</p>
+        <p className="most-relevant">${alert.price_value}</p>
       ) : (
         undefined
       );

@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import FileUploader from "./FileUploader";
 import { closeModal, deleteAlert, editAlert } from "../../actions/index";
 import InputGroup from "../common/InputGroup";
+import TextField from "../common/TextField";
 // import isEmpty from "../../validation/is-empty";
 
 class AlertDetail extends Component {
@@ -24,7 +25,8 @@ class AlertDetail extends Component {
       city: "",
       sameUser: "",
       name: "",
-      createdAt: ""
+      createdAt: "",
+      event_date_time: ""
     };
 
     this.onChange = this.onChange.bind(this);
@@ -41,11 +43,14 @@ class AlertDetail extends Component {
       description,
       price_value,
       city,
-      createdAt
+      createdAt,
+      event_date_time
     } = this.props.alerts.alert;
 
     const sameUser = user === this.props.auth.user.id ? "same" : "";
     const createdAtDate = new Date(createdAt).toDateString();
+
+    const event_date = event_date_time.toString().slice(0, 10);
 
     this.setState({
       alert_type: alert_type,
@@ -58,7 +63,8 @@ class AlertDetail extends Component {
       price_value: price_value,
       city: city,
       sameUser: sameUser,
-      createdAt: createdAtDate
+      createdAt: createdAtDate,
+      event_date_time: event_date
     });
   }
   // componentWillCrecieveProps(nextProps) {
@@ -90,7 +96,8 @@ class AlertDetail extends Component {
       photo_url: this.props.photo_url,
       description: this.state.description,
       price_value: this.state.price_value,
-      city: this.state.city
+      city: this.state.city,
+      event_date_time: this.state.event_date_time
     };
 
     this.props.editAlert(this.state._id, alertData);
@@ -106,6 +113,19 @@ class AlertDetail extends Component {
   // handler, and if ok, then to the onSubmit function
   render() {
     const { errors, sameUser } = this.state;
+    const date = (
+      <TextField
+        name="event_date_time"
+        type="date"
+        value={this.state.event_date_time}
+        onChange={this.onChange}
+        error={errors.event_date_time}
+      />
+    );
+
+    const event_year = this.state.event_date_time.toString().slice(0, 4);
+    let event_date_display =
+      this.state.event_date_time.toString().slice(5, 10) + "-" + event_year;
 
     const editable = (
       <div className="alert-detail">
@@ -128,6 +148,7 @@ class AlertDetail extends Component {
             error={errors.description}
             disabled="true"
           />
+          {this.state.event_date_time ? date : undefined}
           <InputGroup
             placeholder="Price"
             name="price_value"
@@ -174,7 +195,8 @@ class AlertDetail extends Component {
         <h4 className="alert-type">{this.state.alert_type}</h4>
         <h5 className="alert-title">{this.state.title}</h5>
         <p className="description">{this.state.description}</p>
-        <p className="price">{this.state.price_value}</p>
+        <p className="date">{event_date_display}</p>
+        <p className="price">${this.state.price_value}</p>
         <div className="alert-footer">
           <div>{this.state.city}</div>
         </div>
