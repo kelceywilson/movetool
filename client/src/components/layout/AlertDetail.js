@@ -50,7 +50,9 @@ class AlertDetail extends Component {
     const sameUser = user === this.props.auth.user.id ? "same" : "";
     const createdAtDate = new Date(createdAt).toDateString();
 
-    const event_date = event_date_time.toString().slice(0, 10);
+    const event_date = event_date_time
+      ? event_date_time.toString().slice(0, 10)
+      : undefined;
 
     this.setState({
       alert_type: alert_type,
@@ -123,9 +125,12 @@ class AlertDetail extends Component {
       />
     );
 
-    const event_year = this.state.event_date_time.toString().slice(0, 4);
-    let event_date_display =
-      this.state.event_date_time.toString().slice(5, 10) + "-" + event_year;
+    const event_year = this.state.event_date_time
+      ? this.state.event_date_time.toString().slice(0, 4)
+      : undefined;
+    let event_date_display = event_year
+      ? this.state.event_date_time.toString().slice(5, 10) + "-" + event_year
+      : undefined;
 
     const editable = (
       <div className="alert-detail">

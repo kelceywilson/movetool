@@ -2,7 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import PropTypes from "prop-types";
 
-const TextFieldGroup = ({
+const TextField = ({
   name,
   placeholder,
   value,
@@ -33,10 +33,10 @@ const TextFieldGroup = ({
   );
 };
 
-TextFieldGroup.propTypes = {
+TextField.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   info: PropTypes.string,
   error: PropTypes.string,
   type: PropTypes.string.isRequired,
@@ -44,8 +44,8 @@ TextFieldGroup.propTypes = {
   disabled: PropTypes.string
 };
 
-TextFieldGroup.defaultProps = {
+TextField.defaultProps = {
   type: "text"
 };
 
-export default TextFieldGroup;
+export default TextField;
