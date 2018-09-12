@@ -12,10 +12,13 @@ import PrivateRoute from "./components/common/PrivateRoute";
 
 import Dashboard from "./components/dashboard/Dashboard";
 import Footer from "./components/layout/Footer";
-import AlertContainer from "./components/layout/AlertContainer";
+import AlertContainer from "./components/alerts/AlertContainer";
 import Login from "./components/auth/Login";
 import Navbar from "./components/layout/Navbar";
+import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
+// import Profiles from "./components/profiles/Profiles";
+import Resume from "./components/profiles/Resume";
 import CreateProfile from "./components/create-profile/CreateProfile";
 import EditProfile from "./components/edit-profile/EditProfile";
 
@@ -50,10 +53,12 @@ class App extends Component {
         <BrowserRouter>
           <div className="App">
             <Navbar />
-            <Route exact path="/" component={AlertContainer} />
+            <Route exact path="/" component={Landing} />
             <div className="container">
-              <Route exact path="/register" component={Register} />
+              <Route exact path="/alert" component={AlertContainer} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/resume" component={Resume} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>

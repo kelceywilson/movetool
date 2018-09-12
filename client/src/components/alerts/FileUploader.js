@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { deletePhotoUrl, uploadFile } from "../../actions/index";
+import { deletePhotoUrl, uploadFile } from "../../actions";
 
 class FileUploader extends Component {
   render() {

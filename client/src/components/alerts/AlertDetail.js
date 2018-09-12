@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import FileUploader from "./FileUploader";
-import { closeModal, deleteAlert, editAlert } from "../../actions/index";
+import { closeModal, deleteAlert, editAlert } from "../../actions";
 import InputGroup from "../common/InputGroup";
 import TextField from "../common/TextField";
 // import isEmpty from "../../validation/is-empty";

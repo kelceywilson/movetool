@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import FileUploader from "./FileUploader";
 // import AlertTypeChooser from "./alert_type_chooser";
-import { addNewAlert, closeModal } from "../../actions/index";
+import { addNewAlert, closeModal } from "../../actions";
 import InputGroup from "../common/InputGroup";
 import TextField from "../common/TextField";
 import SelectList from "../common/SelectList";
