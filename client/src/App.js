@@ -10,6 +10,7 @@ import store from "./store";
 
 import PrivateRoute from "./components/common/PrivateRoute";
 
+import Contact from "./components/profiles/Contact";
 import Dashboard from "./components/dashboard/Dashboard";
 import Footer from "./components/layout/Footer";
 import AlertContainer from "./components/alerts/AlertContainer";
@@ -56,6 +57,7 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <div className="container">
               <Route exact path="/alert" component={AlertContainer} />
+              <Route exact path="/contact" component={Contact} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Switch>

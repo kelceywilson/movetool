@@ -14,8 +14,18 @@ export const GET_ONE_ALERT = "GET_ONE_ALERT";
 export const GET_DETAILS = "GET_DETAILS";
 export const OPEN_MODAL = "OPEN_MODAL";
 // export const SELECT_ALERT = 'SELECT_ALERT'
+export const SEND_MESSAGE = "SEND_MESSAGE";
 export const SET_ALERT_TYPE = "SET_ALERT_TYPE";
 export const UPLOAD_FILE = "UPLOAD_FILE";
+
+// MESSAGE ACTIONS //
+export function sendMessage(message) {
+  const request = axios.post("/api/message", message);
+  return {
+    type: SEND_MESSAGE,
+    payload: request
+  };
+}
 
 // ALERT ACTIONS //
 export function addNewAlert(values) {

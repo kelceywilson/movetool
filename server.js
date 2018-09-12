@@ -9,6 +9,7 @@ const path = require("path");
 const cloudinary = require("cloudinary");
 
 const alert = require("./routes/api/alert");
+const message = require("./routes/api/message");
 const profile = require("./routes/api/profile");
 const user = require("./routes/api/user");
 
@@ -77,6 +78,7 @@ require("./config/passport")(passport);
 
 // Routes
 app.use("/api/alert", alert);
+app.use("/api/message", message);
 app.use("/api/profile", profile);
 app.use("/api/user", user);
 
