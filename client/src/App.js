@@ -58,7 +58,9 @@ class App extends Component {
               <Route exact path="/alert" component={AlertContainer} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
-              <Route exact path="/resume" component={Resume} />
+              <Switch>
+                <Route exact path="/resume" component={Resume} />
+              </Switch>
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
