@@ -12,20 +12,40 @@ export const GET_ALL_ALERTS = "GET_ALL_ALERTS";
 export const GET_ERRORS = "GET_ERRORS";
 export const GET_ONE_ALERT = "GET_ONE_ALERT";
 export const GET_DETAILS = "GET_DETAILS";
+export const MESSAGE_SENT = "MESSAGE_SENT";
 export const OPEN_MODAL = "OPEN_MODAL";
 // export const SELECT_ALERT = 'SELECT_ALERT'
-export const SEND_MESSAGE = "SEND_MESSAGE";
+// export const SEND_MESSAGE = "SEND_MESSAGE";
 export const SET_ALERT_TYPE = "SET_ALERT_TYPE";
 export const UPLOAD_FILE = "UPLOAD_FILE";
 
 // MESSAGE ACTIONS //
-export function sendMessage(message) {
-  const request = axios.post("/api/message", message);
-  return {
-    type: SEND_MESSAGE,
-    payload: request
-  };
-}
+export const sendMessage = message => dispatch => {
+  axios
+    .post("/api/message", message)
+    .then(res =>
+      dispatch({
+        type: MESSAGE_SENT
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+export const createProfile = (profileData, history) => dispatch => {
+  axios
+    .post(`/api/profile`, profileData)
+    .then(res => history.push("/dashboard"))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
 
 // ALERT ACTIONS //
 export function addNewAlert(values) {

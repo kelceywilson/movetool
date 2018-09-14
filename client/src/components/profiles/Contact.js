@@ -19,8 +19,16 @@ class Contact extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log("nextProps", nextProps);
+
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
   onSubmit(e) {
     e.preventDefault();
+    console.log("this.props", this.props);
 
     const messageData = {
       first_name: this.state.first_name,
@@ -31,14 +39,6 @@ class Contact extends Component {
     };
 
     this.props.sendMessage(messageData);
-    this.setState({
-      first_name: "",
-      last_name: "",
-      email: "",
-      subject: "",
-      message: "",
-      sent: "Your message has been sent"
-    });
   }
 
   onChange(e) {
@@ -47,6 +47,7 @@ class Contact extends Component {
 
   render() {
     const { errors } = this.state;
+
     return (
       <div className="">
         <form className="flex-column" onSubmit={this.onSubmit}>
@@ -78,27 +79,29 @@ class Contact extends Component {
             value={this.state.subject}
             onChange={this.onChange}
           />
-          <div>{errors.subject}</div>
+          <div className="error">{errors.subject}</div>
           <textarea
             name="message"
             placeholder="Your Message"
             value={this.state.message}
             onChange={this.onChange}
           />
+          <div className="error">{errors.message}</div>
           <input type="submit" value="Submit" />
         </form>
-        <div className="error">{this.state.sent}</div>
+        <div className="error">{this.props.message.sent}</div>
       </div>
     );
   }
 }
+// first_name: state.first_name,
+// last_name: state.last_name,
+// email: state.email,
+// subject: state.subject,
+// message: state.message,
 
 function mapStateToProps(state) {
   return {
-    first_name: state.first_name,
-    last_name: state.last_name,
-    email: state.email,
-    subject: state.subject,
     message: state.message,
     errors: state.errors
   };

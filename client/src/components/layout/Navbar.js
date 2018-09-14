@@ -18,7 +18,7 @@ class Navbar extends Component {
     const authLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/dashboard">
+          <Link className="navlink" to="/dashboard">
             Dashboard
           </Link>
         </li>
@@ -26,7 +26,7 @@ class Navbar extends Component {
           <a
             href=""
             onClick={this.onLogoutClick.bind(this)}
-            className="nav-link"
+            className="navlink"
           >
             <img
               className="rounded-circle"
@@ -44,12 +44,12 @@ class Navbar extends Component {
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/register">
+          <Link className="navlink" to="/register">
             Sign Up
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/login">
+          <Link className="navlink" to="/login">
             Login
           </Link>
         </li>
@@ -74,19 +74,19 @@ class Navbar extends Component {
           <div className="collapse navbar-collapse" id="mobile-nav">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link className="nav-link" to="/resume">
+                <Link className="navlink" to="/resume">
                   {" "}
                   Resume
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/alert">
+                <Link className="navlink" to="/alert">
                   {" "}
-                  Marketplace
+                  Sandbox
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/contact">
+                <Link className="navlink" to="/contact">
                   {" "}
                   Contact
                 </Link>

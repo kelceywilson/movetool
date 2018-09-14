@@ -1,9 +1,20 @@
-import { SEND_MESSAGE } from "../actions";
+import { MESSAGE_SENT } from "../actions";
 
-export default function(state = "", action) {
+const initialState = {
+  sent: null
+};
+
+export default function(state = initialState, action) {
   switch (action.type) {
-    case SEND_MESSAGE:
-      return state;
+    case MESSAGE_SENT:
+      return {
+        first_name: "",
+        last_name: "",
+        email: "",
+        subject: "",
+        message: "",
+        sent: "Your message has been sent"
+      };
     default:
       return state;
   }

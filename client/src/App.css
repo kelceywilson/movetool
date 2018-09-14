@@ -359,3 +359,10 @@ img {
   font-size: .6em;
   right: 50px;
 }
+
+.navlink {
+  text-decoration: none;
+  font-size: .7em;
+  margin-right: 5px;
+  color: darkgray;
+}

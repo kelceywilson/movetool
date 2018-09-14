@@ -3,6 +3,7 @@ const passport = require("passport");
 const router = express.Router();
 
 const Message = require("../../models/Message");
+const validateMessageInput = require("../../validation/message");
 
 /**
  * @route   GET api/message/test
@@ -40,12 +41,20 @@ router.get("/", (req, res) => {
 });
 
 /**
- * @route   POST api/alert
- * @desc    Post new alert
+ * @route   POST api/message
+ * @desc    Post new message
  * @access  Private
  */
 router.post("/", (req, res) => {
-  console.log(req.body);
+  console.log("route", req.body);
+  const { errors, isValid } = validateMessageInput(req.body);
+  console.log("route errors", errors);
+
+  // Check Validation
+  if (!isValid) {
+    // Return any errors with 400 status
+    return res.status(400).json(errors);
+  }
 
   const newMessage = new Message({
     first_name: req.body.first_name,
@@ -58,7 +67,7 @@ router.post("/", (req, res) => {
   newMessage
     .save()
     .then(message => res.status(201).json(message))
-    .catch(err => console.log(err));
+    .catch(err => console.log("api/message", err));
 });
 
 /**
