@@ -354,10 +354,7 @@ img {
 }
 
 .footer {
-  position: absolute;
-  bottom: 5px;
   font-size: .6em;
-  right: 50px;
 }
 
 .navlink {

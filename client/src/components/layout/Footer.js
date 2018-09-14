@@ -2,7 +2,7 @@ import React from "react";
 
 export default () => {
   return (
-    <footer className="footer">
+    <footer className="mt-5 p-4 text-center footer">
       Copyright &copy; {new Date().getFullYear()} Kelcey Wilson
     </footer>
   );
