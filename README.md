@@ -62,3 +62,7 @@ x- event: date, cost
 13. Good story page
 
 14. fix file structure
+
+15. Sell something (set up something like stripe etc.)
+
+16.
