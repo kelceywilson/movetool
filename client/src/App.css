@@ -363,3 +363,21 @@ img {
   margin-right: 5px;
   color: darkgray;
 }
+
+.portrait {
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+  margin: 0 20px 15px 0;
+  box-shadow: 10px 5px 5px #bbb;
+}
+
+.about-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.about-text {
+  max-width: 450px;
+}

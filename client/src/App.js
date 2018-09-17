@@ -13,6 +13,7 @@ import PrivateRoute from "./components/common/PrivateRoute";
 import Contact from "./components/profiles/Contact";
 import Dashboard from "./components/dashboard/Dashboard";
 import Footer from "./components/layout/Footer";
+import About from "./components/profiles/About";
 import AlertContainer from "./components/alerts/AlertContainer";
 import Login from "./components/auth/Login";
 import Navbar from "./components/layout/Navbar";
@@ -56,6 +57,7 @@ class App extends Component {
             <Navbar />
             <Route exact path="/" component={Landing} />
             <div className="container">
+              <Route exact path="/about" component={About} />
               <Route exact path="/alert" component={AlertContainer} />
               <Route exact path="/contact" component={Contact} />
               <Route exact path="/login" component={Login} />
